@@ -1,0 +1,263 @@
+.flower-spinner,
+.flower-spinner * {
+  box-sizing: border-box;
+}
+
+.flower-spinner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-large {
+  height: 70px;
+  width: 70px;
+
+  .dots-container {
+    height: calc(70px / 7);
+    width: calc(70px / 7);
+  }
+}
+
+.spinner-medium {
+  height: 50px;
+  width: 50px;
+
+  .dots-container {
+    height: calc(50px / 7);
+    width: calc(50px / 7);
+  }
+}
+
+.spinner-small {
+  height: 30px;
+  width: 30px;
+
+  .dots-container {
+    height: calc(30px / 7);
+    width: calc(30px / 7);
+  }
+}
+
+.smaller-dot {
+  background: var(--outline);
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.spinner-primary .smaller-dot {
+  background: var(--primary);
+}
+
+.bigger-dot {
+  background: var(--outline);
+  height: 100%;
+  width: 100%;
+  padding: 10%;
+  border-radius: 50%;
+}
+
+.spinner-primary .bigger-dot {
+  background: var(--primary);
+}
+
+@mixin bigSpinAnimation(
+  $animationName,
+  $color,
+  $largeSize,
+  $negativeLargeSize,
+  $smallSize,
+  $negativeSmallSize
+) {
+  animation: $animationName 2.5s 0s infinite both;
+  @keyframes #{$animationName} {
+    0%,
+    100% {
+      box-shadow: $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px,
+        $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px;
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    25%,
+    75% {
+      box-shadow: $color $largeSize 0px 0px, $color $negativeLargeSize 0px 0px,
+        $color 0px $largeSize 0px, $color 0px $negativeLargeSize 0px,
+        $color $smallSize $negativeSmallSize 0px, $color $smallSize $smallSize 0px,
+        $color $negativeSmallSize $negativeSmallSize 0px, $color $negativeSmallSize $smallSize 0px;
+    }
+
+    100% {
+      transform: rotate(360deg);
+      box-shadow: $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px,
+        $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px;
+    }
+  }
+}
+
+@mixin smallSpinAnimation(
+  $animationName,
+  $color,
+  $largeSize,
+  $negativeLargeSize,
+  $smallSize,
+  $negativeSmallSize
+) {
+  animation: $animationName 2.5s 0s infinite both;
+  @keyframes #{$animationName} {
+    0%,
+    100% {
+      box-shadow: $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px,
+        $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px;
+    }
+
+    25%,
+    75% {
+      box-shadow: $color $largeSize 0px 0px, $color $negativeLargeSize 0px 0px,
+        $color 0px $largeSize 0px, $color 0px $negativeLargeSize 0px,
+        $color $smallSize $negativeSmallSize 0px, $color $smallSize $smallSize 0px,
+        $color $negativeSmallSize $negativeSmallSize 0px, $color $negativeSmallSize $smallSize 0px;
+    }
+
+    100% {
+      box-shadow: $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px,
+        $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px, $color 0px 0px 0px;
+    }
+  }
+}
+
+.spinner-large .smaller-dot {
+  @include smallSpinAnimation(
+    flower-spinner-smaller-dot-animation-large,
+    var(--outline),
+    14px,
+    -14px,
+    10px,
+    -10px
+  );
+}
+
+.spinner-medium .smaller-dot {
+  @include smallSpinAnimation(
+    flower-spinner-smaller-dot-animation-medium,
+    var(--outline),
+    11px,
+    -11px,
+    7px,
+    -7px
+  );
+}
+
+.spinner-small .smaller-dot {
+  @include smallSpinAnimation(
+    flower-spinner-smaller-dot-animation-small,
+    var(--outline),
+    7px,
+    -7px,
+    5px,
+    -5px
+  );
+}
+
+.spinner-large .bigger-dot {
+  @include bigSpinAnimation(
+    flower-spinner-bigger-dot-animation-large,
+    var(--outline),
+    26px,
+    -26px,
+    19px,
+    -19px
+  );
+}
+
+.spinner-medium .bigger-dot {
+  @include bigSpinAnimation(
+    flower-spinner-bigger-dot-animation-medium,
+    var(--outline),
+    20px,
+    -20px,
+    14px,
+    -14px
+  );
+}
+
+.spinner-small .bigger-dot {
+  @include bigSpinAnimation(
+    flower-spinner-bigger-dot-animation-small,
+    var(--outline),
+    13px,
+    -13px,
+    9px,
+    -9px
+  );
+}
+
+.spinner-large .smaller-dot.spinner-primary {
+  @include smallSpinAnimation(
+    flower-spinner-smaller-dot-animation-large-primary,
+    var(--primary),
+    14px,
+    -14px,
+    10px,
+    -10px
+  );
+}
+
+.spinner-medium .spinner-primary.smaller-dot {
+  @include smallSpinAnimation(
+    flower-spinner-smaller-dot-animation-medium-primary,
+    var(--primary),
+    11px,
+    -11px,
+    7px,
+    -7px
+  );
+}
+
+.spinner-small .spinner-primary.smaller-dot {
+  @include smallSpinAnimation(
+    flower-spinner-smaller-dot-animation-small-primary,
+    var(--primary),
+    7px,
+    -7px,
+    5px,
+    -5px
+  );
+}
+
+.spinner-large .spinner-primary.bigger-dot {
+  @include bigSpinAnimation(
+    flower-spinner-bigger-dot-animation-large-primary,
+    var(--primary),
+    26px,
+    -26px,
+    19px,
+    -19px
+  );
+}
+
+.spinner-medium .spinner-primary.bigger-dot {
+  @include bigSpinAnimation(
+    flower-spinner-bigger-dot-animation-medium-primary,
+    var(--primary),
+    20px,
+    -20px,
+    14px,
+    -14px
+  );
+}
+
+.spinner-small .spinner-primary.bigger-dot {
+  @include bigSpinAnimation(
+    flower-spinner-bigger-dot-animation-small-primary,
+    var(--primary),
+    13px,
+    -13px,
+    9px,
+    -9px
+  );
+}

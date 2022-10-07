@@ -1,0 +1,92 @@
+.pixel-spinner,
+.pixel-spinner * {
+  box-sizing: border-box;
+}
+
+.pixel-spinner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-large {
+  height: 70px;
+  width: 70px;
+}
+
+.spinner-large .pixel-spinner-inner {
+  width: calc(70px / 7);
+  height: calc(70px / 7);
+  box-shadow: 15px 15px 0 0, -15px -15px 0 0, 15px -15px 0 0, -15px 15px 0 0, 0 15px 0 0, 15px 0 0 0,
+    -15px 0 0 0, 0 -15px 0 0;
+  animation: pixel-spinner-animation-large 2000ms linear infinite;
+}
+
+.spinner-medium {
+  height: 50px;
+  width: 50px;
+}
+
+.spinner-medium .pixel-spinner-inner {
+  width: calc(50px / 7);
+  height: calc(50px / 7);
+  box-shadow: 10px 10px 0 0, -10px -10px 0 0, 10px -10px 0 0, -10px 10px 0 0, 0 10px 0 0, 10px 0 0 0,
+    -10px 0 0 0, 0 -10px 0 0;
+  animation: pixel-spinner-animation-medium 2000ms linear infinite;
+}
+
+.spinner-small {
+  height: 30px;
+  width: 30px;
+}
+
+.spinner-small .pixel-spinner-inner {
+  width: calc(30px / 7);
+  height: calc(30px / 7);
+  box-shadow: 5px 5px 0 0, -5px -5px 0 0, 5px -5px 0 0, -5px 5px 0 0, 0 5px 0 0, 5px 0 0 0,
+    -5px 0 0 0, 0 -5px 0 0;
+  animation: pixel-spinner-animation-small 2000ms linear infinite;
+}
+
+@keyframes pixel-spinner-animation-small {
+  50% {
+    box-shadow: 10px 10px 0px 0px, -10px -10px 0px 0px, 10px -10px 0px 0px, -10px 10px 0px 0px,
+      0px 5px 0px 0px, 5px 0px 0px 0px, -5px 0px 0px 0px, 0px -5px 0px 0px;
+  }
+  75% {
+    box-shadow: 10px 10px 0px 0px, -10px -10px 0px 0px, 10px -10px 0px 0px, -10px 10px 0px 0px,
+      0px 5px 0px 0px, 5px 0px 0px 0px, -5px 0px 0px 0px, 0px -5px 0px 0px;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pixel-spinner-animation-medium {
+  50% {
+    box-shadow: 15px 15px 0px 0px, -15px -15px 0px 0px, 15px -15px 0px 0px, -15px 15px 0px 0px,
+      0px 5px 0px 0px, 5px 0px 0px 0px, -5px 0px 0px 0px, 0px -5px 0px 0px;
+  }
+  75% {
+    box-shadow: 15px 15px 0px 0px, -15px -15px 0px 0px, 15px -15px 0px 0px, -15px 15px 0px 0px,
+      0px 5px 0px 0px, 5px 0px 0px 0px, -5px 0px 0px 0px, 0px -5px 0px 0px;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pixel-spinner-animation-large {
+  50% {
+    box-shadow: 20px 20px 0px 0px, -20px -20px 0px 0px, 20px -20px 0px 0px, -20px 20px 0px 0px,
+      0px 10px 0px 0px, 10px 0px 0px 0px, -10px 0px 0px 0px, 0px -10px 0px 0px;
+  }
+  75% {
+    box-shadow: 20px 20px 0px 0px, -20px -20px 0px 0px, 20px -20px 0px 0px, -20px 20px 0px 0px,
+      0px 10px 0px 0px, 10px 0px 0px 0px, -10px 0px 0px 0px, 0px -10px 0px 0px;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

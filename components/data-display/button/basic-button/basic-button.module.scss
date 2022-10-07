@@ -1,0 +1,141 @@
+.sb-basic-button {
+  font-family: 'Montserrat', 'sans-serif';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+
+  &--square {
+    border-radius: 5px;
+  }
+
+  &--round {
+    border-radius: 50px;
+  }
+
+  &--primary {
+    &.sb-basic-button--filled {
+      background-color: var(--red-500);
+      color: var(--white-500);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &.sb-basic-button--outline {
+      border: 1px solid var(--disabled);
+      color: var(--primary);
+      background-color: transparent;
+
+      &:hover {
+        background-color: var(--surface-5);
+      }
+    }
+  }
+
+  &--primary-container {
+    &.sb-basic-button--filled {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &.sb-basic-button--outline {
+      border: 1px solid var(--disabled);
+      color: var(--on-primary-container);
+      background-color: transparent;
+
+      &:hover {
+        background-color: var(--surface-5);
+      }
+    }
+  }
+
+  &--secondary {
+    &.sb-basic-button--filled {
+      background-color: var(--secondary);
+      color: var(--on-secondary);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &.sb-basic-button--outline {
+      border: 1px solid var(--disabled);
+      color: var(--secondary);
+      background-color: transparent;
+
+      &:hover {
+        background-color: var(--surface-5);
+      }
+    }
+  }
+
+  &--small {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    padding: 0 24px;
+    height: 30px;
+    font-weight: 600;
+  }
+
+  &--medium {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    padding: 0 24px;
+    height: 36px;
+    font-weight: 600;
+  }
+
+  &--large {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    padding: 0 24px;
+    height: 40px;
+    font-weight: 500;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    &.sb-basic-button--filled {
+      background-color: var(--disabled);
+      color: var(--outline);
+
+      &:hover {
+        background-color: var(--disabled);
+      }
+    }
+
+    &.sb-basic-button--outline {
+      border: 1px solid var(--disabled);
+      color: var(--outline);
+      background-color: transparent;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &--disabled > * {
+    pointer-events: none;
+  }
+}
+
+.start-icon {
+  margin-right: 8px;
+}
+.end-icon {
+  margin-left: 8px;
+}

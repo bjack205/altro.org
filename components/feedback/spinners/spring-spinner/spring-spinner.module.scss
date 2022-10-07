@@ -1,0 +1,111 @@
+.spring-spinner,
+.spring-spinner * {
+  box-sizing: border-box;
+}
+
+.spring-spinner-large {
+  width: 60px;
+  height: 60px;
+}
+
+.spring-spinner-large .spring-spinner-part {
+  overflow: hidden;
+  height: calc(60px / 2);
+  width: 60px;
+}
+
+.spring-spinner-medium {
+  width: 40px;
+  height: 40px;
+}
+
+.spring-spinner-medium .spring-spinner-part {
+  overflow: hidden;
+  height: calc(40px / 2);
+  width: 40px;
+}
+
+.spring-spinner-small {
+  width: 25px;
+  height: 25px;
+}
+
+.spring-spinner-small .spring-spinner-part {
+  overflow: hidden;
+  height: calc(25px / 2);
+  width: 25px;
+}
+
+.spring-spinner .spring-spinner-part.bottom {
+  transform: rotate(180deg) scale(-1, 1);
+}
+
+@mixin spinAnimation($animationName, $size) {
+  animation: $animationName 3s ease-in-out infinite;
+  @keyframes #{$animationName} {
+    0% {
+      border-width: calc($size / 7);
+    }
+    25% {
+      border-width: calc($size / 23.33);
+    }
+    50% {
+      transform: rotate(115deg);
+      border-width: calc($size / 7);
+    }
+    75% {
+      border-width: calc($size / 23.33);
+    }
+    100% {
+      border-width: calc($size / 7);
+    }
+  }
+}
+
+.spring-spinner-large .spring-spinner-rotator {
+  width: 60px;
+  height: 60px;
+  border: calc(60px / 7) solid transparent;
+  border-right-color: var(--primary);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  box-sizing: border-box;
+  @include spinAnimation(spring-spinner-animation, 60px);
+  transform: rotate(-200deg);
+}
+
+.spring-spinner-medium .spring-spinner-rotator {
+  width: 40px;
+  height: 40px;
+  border: calc(40px / 7) solid transparent;
+  border-right-color: var(--primary);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  box-sizing: border-box;
+  @include spinAnimation(spring-spinner-animation, 40px);
+  transform: rotate(-200deg);
+}
+
+.spring-spinner-small .spring-spinner-rotator {
+  width: 60px;
+  height: 60px;
+  border: calc(60px / 7) solid transparent;
+  border-right-color: var(--primary);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  box-sizing: border-box;
+  @include spinAnimation(spring-spinner-animation, 60px);
+  transform: rotate(-200deg);
+}
+
+.spring-spinner-small .spring-spinner-rotator {
+  width: 25px;
+  height: 25px;
+  border: calc(25px / 7) solid transparent;
+  border-right-color: var(--primary);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  box-sizing: border-box;
+  @include spinAnimation(spring-spinner-animation, 25px);
+  transform: rotate(-200deg);
+}
