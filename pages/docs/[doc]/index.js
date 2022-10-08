@@ -167,7 +167,12 @@ export default function Doc({ slug, source, docs }) {
 }
 
 export const getStaticPaths = async () => {
-  const paths = fetchDocContent().map((it) => '/docs/' + it.slug);
+  const paths = [];
+  fetchDocContent().forEach((doc) => {
+    if (!doc.children) {
+      paths.push('/docs/' + doc.slug);
+    }
+  });
   return {
     paths,
     fallback: false,
