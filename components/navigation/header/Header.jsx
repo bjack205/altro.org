@@ -32,9 +32,11 @@ export const Header = ({ links, stickyHeader, docs }) => {
           </div>
           <div className="flex space-x-0 items-center">
             <div className="lg:w-[163px] h-[55px] flex justify-start items-center hover:cursor-pointer">
-              <a href="/" className="text-heading-sm text-red-400 font-logo">
-                ALTRO
-              </a>
+              <Link href="/">
+                <a href="/" className="text-heading-sm text-red-400 font-logo">
+                  ALTRO
+                </a>
+              </Link>
             </div>
             <ul className="hidden lg:flex justify-around pt-1">
               {links.map((link, i) => {
@@ -47,9 +49,11 @@ export const Header = ({ links, stickyHeader, docs }) => {
                     })}
                   >
                     {link.target ? (
-                      <a href={link.url} target="_blank" rel="noreferrer">
-                        {link.label}
-                      </a>
+                      <Link href={link.url} passHref>
+                        <a href={link.url} target="_blank" rel="noreferrer">
+                          {link.label}
+                        </a>
+                      </Link>
                     ) : (
                       <Link href={link.url}>{link.label}</Link>
                     )}
@@ -84,7 +88,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
           {links.map((link, i) => {
             if (link.label === 'Docs') {
               return (
-                <>
+                <div key={i}>
                   <li
                     key={i}
                     className={clsx(
@@ -127,7 +131,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
                       })}
                     </ul>
                   )}
-                </>
+                </div>
               );
             } else {
               return (
@@ -139,9 +143,11 @@ export const Header = ({ links, stickyHeader, docs }) => {
                   })}
                 >
                   {link.target ? (
-                    <a href={link.url} target="_blank" rel="noreferrer">
-                      {link.label}
-                    </a>
+                    <Link href={link.url} passHref>
+                      <a href={link.url} target="_blank" rel="noreferrer">
+                        {link.label}
+                      </a>
+                    </Link>
                   ) : (
                     <Link href={link.url}>{link.label}</Link>
                   )}
@@ -188,7 +194,8 @@ Header.defaultProps = {
     },
     {
       label: 'Github',
-      url: '/github',
+      url: 'https://github.com/bjack205/altro-cpp',
+      target: '_blank',
     },
   ],
   docs: [],
