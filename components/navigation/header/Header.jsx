@@ -62,8 +62,17 @@ export const Header = ({ links, stickyHeader, docs }) => {
               })}
             </ul>
           </div>
-          <div className="flex justify-end w-[60px] lg:w-[162px]">
-            <Image src="/robotic-logo.svg" alt="robotic logo" width="50px" height="40px" />
+          <div className="flex items-center h-[100%] justify-end w-[60px] lg:w-[162px]">
+            <Link href="https://www.ri.cmu.edu/" passHref>
+              <a
+                href="https://www.ri.cmu.edu/"
+                target="_blank"
+                rel="noreferrer"
+                className="h-[40px]"
+              >
+                <Image src="/robotic-logo.svg" alt="robotic logo" width="50px" height="40px" />
+              </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -194,7 +203,7 @@ Header.defaultProps = {
     },
     {
       label: 'Github',
-      url: 'https://github.com/bjack205/altro-cpp',
+      url: 'https://github.com/bjack205/altro',
       target: '_blank',
     },
   ],

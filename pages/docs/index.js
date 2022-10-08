@@ -12,10 +12,7 @@ export default function Index({ docs }) {
       <Head>
         <title>ALTRO</title>
         <meta name="description" content="ALTRO is an open source tool for robotics..." />
-        <link
-          rel="icon"
-          href="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Robotics_Institute_logo.svg/1200px-Robotics_Institute_logo.svg.png"
-        />
+        <link rel="icon" href="/robot.svg" />
       </Head>
 
       <main className="w-[100%] flex flex-col items-center">

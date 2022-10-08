@@ -28,7 +28,7 @@ export const Footer = () => {
                 <Link href="/citing">Citing</Link>
               </li>
               <li className="text-body-md text-grey-100 hover:text-white-500">
-                <Link href="https://github.com/bjack205/altro-cpp">Github</Link>
+                <Link href="https://github.com/bjack205/altro">Github</Link>
               </li>
               <div className="flex justify-start">
                 <BasicButton label="Get Started" size="medium" />
