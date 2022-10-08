@@ -7,7 +7,8 @@ import Lottie from 'react-lottie';
 import { BasicButton } from '../components/data-display/button/basic-button/BasicButton';
 import { BsSpeedometer2 } from 'react-icons/bs';
 import Image from 'next/image';
-import { listDocContent } from '../lib/docs';
+import { fetchDocContent } from '../lib/docs';
+import Link from 'next/link';
 
 export default function Home({ docs }) {
   const defaultOptions = {
@@ -98,7 +99,9 @@ export default function Home({ docs }) {
               Open-source, with many interfaces
             </p>
             <div className="flex justify-center mt-8">
-              <BasicButton label="Get Started" boxShadow={4}></BasicButton>
+              <Link href="/docs/getting-started/index">
+                <BasicButton label="Get Started" boxShadow={4}></BasicButton>
+              </Link>
             </div>
           </div>
           <div className="absolute opacity-50 w-[100%] h-[100%]">
@@ -172,7 +175,7 @@ export default function Home({ docs }) {
 }
 
 export const getStaticProps = async () => {
-  const docs = listDocContent();
+  const docs = fetchDocContent();
   return {
     props: {
       docs,

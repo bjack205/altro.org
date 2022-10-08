@@ -26,12 +26,12 @@
     }
 
     &.sb-basic-button--outline {
-      border: 1px solid var(--disabled);
-      color: var(--primary);
+      border: 1px solid var(--grey-600);
+      color: var(--red-50);
       background-color: transparent;
 
       &:hover {
-        background-color: var(--surface-5);
+        background-color: rgba(179, 29, 36, 0.1);
       }
     }
   }

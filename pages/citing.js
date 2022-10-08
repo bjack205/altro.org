@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Footer } from '../components/navigation/footer/Footer';
 import { Header } from '../components/navigation/header/Header';
-import { listDocContent } from '../lib/docs';
+import { fetchDocContent } from '../lib/docs';
 
 export default function Citing({ docs }) {
   return (
@@ -81,7 +81,7 @@ export default function Citing({ docs }) {
 }
 
 export const getStaticProps = async () => {
-  const docs = listDocContent();
+  const docs = fetchDocContent();
   return {
     props: {
       docs,
