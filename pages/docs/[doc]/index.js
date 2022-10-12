@@ -8,69 +8,8 @@ import Document from '../../../components/Document';
 
 const components = { MathJax, MathJaxContext };
 
-export default function Doc({ slug, source, docs }) {
+export default function Doc({ slug, source, docs, nextDoc, previousDoc }) {
   const content = hydrate(source, { components });
-
-  let nextSlug = 0;
-
-  let previousSlug = 0;
-
-  for (let i = 0; i < docs.length; i++) {
-    if (docs[i].children) {
-      for (let j = 0; j < docs[i].children.length; j++) {
-        if (docs[i].children[j].slug == slug) {
-          if (j > 0) {
-            previousSlug = docs[i].children[j - 1].slug;
-          } else {
-            if (i > 0) {
-              if (docs[i - 1].children) {
-                previousSlug = docs[i - 1].children[docs[i - 1].children.length - 1].slug;
-              } else {
-                previousSlug = docs[i - 1].slug;
-              }
-            } else {
-              previousSlug = docs[i].slug;
-            }
-          }
-          if (j < docs[i].children.length - 1) {
-            nextSlug = docs[i].children[j + 1].slug;
-          } else {
-            if (docs[i + 1].children) {
-              nextSlug = docs[i + 1].children[0].slug;
-            } else {
-              nextSlug = docs[i + 1].slug;
-            }
-          }
-          break;
-        }
-      }
-      if (nextSlug) {
-        break;
-      }
-    } else {
-      if (docs[i].slug == slug) {
-        if (i > 0) {
-          if (docs[i - 1].children) {
-            previousSlug = docs[i - 1].children[docs[i - 1].children.length - 1].slug;
-          } else {
-            previousSlug = docs[i - 1].slug;
-          }
-        } else {
-          previousSlug = docs[i].slug;
-        }
-        if (i < docs.length - 1) {
-          if (docs[i + 1].children) {
-            nextSlug = docs[i + 1].children[0].slug;
-          } else {
-            nextSlug = docs[i + 1].slug;
-          }
-        } else {
-          nextSlug = docs[i].slug;
-        }
-        break;
-      }
-    }
-  }
 
   const config = {
     loader: { load: ['input/asciimath'] },
@@ -89,8 +28,8 @@ export default function Doc({ slug, source, docs }) {
         slug={slug}
         content={content}
         config={config}
-        nextSlug={nextSlug}
-        previousSlug={previousSlug}
+        nextDoc={nextDoc}
+        previousDoc={previousDoc}
       />
     </>
   );
@@ -111,17 +50,18 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const slug = params.doc;
-  const docs = fetchDocContent();
 
   const details = fetchDocBySlug(slug);
 
   const mdxSource = await renderToString(details.content, { components, scope: details.data });
   return {
     props: {
-      docs: docs,
+      docs: details.docs,
       title: details.data.title,
       slug: details.data.slug,
       source: mdxSource,
+      nextDoc: details.nextDoc,
+      previousDoc: details.previousDoc,
     },
   };
 };

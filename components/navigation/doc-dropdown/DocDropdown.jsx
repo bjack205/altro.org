@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
-export const DocDropdown = ({ doc }) => {
+export const DocDropdown = ({ doc, key, length }) => {
   const router = useRouter();
   const [dropdown, setDropdown] = useState(false);
 
@@ -17,18 +18,24 @@ export const DocDropdown = ({ doc }) => {
   }, [router.asPath, doc.children]);
 
   return (
-    <div className="w-[100%] select-none">
+    <div
+      className={clsx('w-[100%] select-none border-t-[.5px] border-grey-600 border-solid', {
+        ['border-b-[.5px]']: key == length - 1,
+      })}
+    >
       <li
-        className={clsx('flex items-center px-8 py-2 text-grey-200 hover:cursor-pointer', {
-          ['bg-grey-800 text-white-500']: dropdown,
-        })}
+        className={clsx(
+          'flex items-center justify-between text-[14px] px-8 py-3 text-grey-200 hover:cursor-pointer'
+        )}
         onClick={() => setDropdown(!dropdown)}
       >
         {doc.title}
+        <span className="text-[1.5rem]">
+          {dropdown ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+        </span>
       </li>
-      {dropdown && <hr className="border-none h-[0.5px] bg-grey-500 text-grey-500" />}
       {dropdown && (
-        <ul className="bg-grey-800 w-[100%] flex flex-col rounded-sm">
+        <ul className="w-[95%] flex flex-col mt-[-8px] pb-2 space-y-2">
           {doc.children.map((child, j) => {
             return (
               <li key={j} className="">
@@ -36,9 +43,9 @@ export const DocDropdown = ({ doc }) => {
                   <a
                     href={'/docs/' + child.slug}
                     className={clsx(
-                      'hover:text-red-200 text-grey-100 text-[14px] px-8 py-4 hover:cursor-pointer leading-6 h-[40px] flex items-center',
+                      'hover:bg-hover-effect text-grey-100 py-1 text-[14px] px-8 pl-16 hover:cursor-pointer leading-6 flex items-center rounded-r-xl',
                       {
-                        ['text-red-200']: router.asPath == '/docs/' + child.slug,
+                        ['bg-active-effect text-red-200']: router.asPath == '/docs/' + child.slug,
                       }
                     )}
                   >

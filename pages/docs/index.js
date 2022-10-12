@@ -6,8 +6,6 @@ import { fetchDocContent } from '../../lib/docs';
 import clsx from 'clsx';
 
 export default function Index({ docs }) {
-  console.log('docs', docs);
-
   return (
     <>
       <Head>

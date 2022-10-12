@@ -53,6 +53,8 @@ module.exports = {
       'white-900': 'var(--white-900)',
       'disabled': 'var(--disabled)',
       'dialog-background': 'rgba(0, 0, 0, .2)',
+      'active-effect': 'rgba(179, 29, 36, .1)',
+      'hover-effect': 'rgba(60, 60, 60, .5)',
     },
     fontFamily: {
       body: ['Hind', 'sans-serif'],

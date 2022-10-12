@@ -42,7 +42,7 @@ export default function Home({ docs, content }) {
               ALTRO
             </h1>
 
-            <div class="text-center text-body-md lg:text-body-lg typewrite leading-6 my-4 text-grey-50 scrollable-div">
+            <div className="text-center text-body-md lg:text-body-lg typewrite leading-6 my-4 text-grey-50 scrollable-div">
               <Typewriter
                 options={{
                   strings: content.typewriter,

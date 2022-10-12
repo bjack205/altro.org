@@ -15,8 +15,6 @@ export const Header = ({ links, stickyHeader, docs }) => {
   const [active, setActive] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
-  console.log('docs', docs);
-
   return (
     <>
       <header
