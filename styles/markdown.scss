@@ -1,0 +1,157 @@
+.markdown-content {
+  font-family: 'Hind', sans-serif;
+  color: var(--text-grey-200);
+
+  strong {
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 3.157rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.369rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 3.2rem;
+  }
+
+  h3 {
+    font-size: 1.777rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h4 {
+    font-size: 1.333rem;
+    font-family: 'Hind', sans-serif;
+  }
+
+  h5 {
+    font-size: 1rem;
+    font-family: 'Hind', sans-serif;
+    margin: 0.75rem 0;
+  }
+
+  h6 {
+    font-size: 0.75rem;
+    font-family: 'Hind', sans-serif;
+    margin: 0.75rem 0;
+  }
+
+  p {
+    font-size: 1rem;
+    font-family: 'Hind', sans-serif;
+    line-height: 1.675rem;
+    margin: 0.75rem 0;
+  }
+
+  pre code {
+    display: block;
+    margin: 1rem 0;
+    white-space: pre;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 1rem 1.5rem;
+    background-color: var(--grey-700);
+    font-family: monospace;
+    border-radius: 0.2rem;
+    overflow: auto;
+  }
+
+  blockquote {
+    background: var(--grey-700);
+    border-left: 10px solid var(--grey-400);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: '\201C''\201D''\2018''\2019';
+  }
+
+  blockquote:before {
+    color: var(--grey-100);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+
+  blockquote p {
+    display: inline;
+  }
+
+  blockquote cite {
+    display: block;
+    font-style: italic;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    thead tr {
+      background-color: var(--red-500);
+      color: #ffffff;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--grey-700);
+      background-color: var(--grey-800);
+    }
+
+    tbody tr:nth-of-type(even) {
+      background-color: var(--grey-700);
+    }
+
+    tbody tr:last-of-type {
+      border-bottom: 1px solid var(--red-400);
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin: 0 2rem;
+    line-height: 1.75rem;
+
+    ul {
+      list-style-type: circle;
+      margin-left: 1rem;
+    }
+
+    ol {
+      list-style-type: lower-alpha;
+      margin-left: 1rem;
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin: 0 2rem;
+    line-height: 1.75rem;
+
+    ul {
+      list-style-type: circle;
+      margin-left: 1rem;
+    }
+
+    ol {
+      list-style-type: lower-alpha;
+      margin-left: 1rem;
+    }
+  }
+}

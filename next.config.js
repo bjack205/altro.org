@@ -29,7 +29,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: ['imgur.com', 'player.vimeo.com'],
+    domains: ['imgur.com', 'player.vimeo.com', 'roboticexplorationlab.org'],
   },
   i18n: {
     locales: ['en'],

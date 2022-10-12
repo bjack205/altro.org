@@ -5,12 +5,14 @@ import { Header } from '../components/navigation/header/Header';
 import animationData from '../public/wave.json';
 import Lottie from 'react-lottie';
 import { BasicButton } from '../components/data-display/button/basic-button/BasicButton';
-import { BsSpeedometer2 } from 'react-icons/bs';
 import Image from 'next/image';
 import { fetchDocContent } from '../lib/docs';
 import Link from 'next/link';
+import Typewriter from 'typewriter-effect';
+import { fetchHomeContent } from '../lib/home';
 
-export default function Home({ docs }) {
+export default function Home({ docs, content }) {
+  console.log(content);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -20,65 +22,9 @@ export default function Home({ docs }) {
     },
   };
 
-  const features = [
-    {
-      icon: <BsSpeedometer2 />,
-      title: 'Lorem Ipsum',
-      description:
-        'Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.',
-    },
-    {
-      icon: <BsSpeedometer2 />,
-      title: 'Lorem Ipsum',
-      description:
-        'Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.',
-    },
-    {
-      icon: <BsSpeedometer2 />,
-      title: 'Lorem Ipsum',
-      description:
-        'Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.',
-    },
-    {
-      icon: <BsSpeedometer2 />,
-      title: 'Lorem Ipsum',
-      description:
-        'Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.',
-    },
-    {
-      icon: <BsSpeedometer2 />,
-      title: 'Lorem Ipsum',
-      description:
-        'Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.',
-    },
-    {
-      icon: <BsSpeedometer2 />,
-      title: 'Lorem Ipsum',
-      description:
-        'Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.',
-    },
-  ];
+  const features = content.features;
 
-  const contributors = [
-    {
-      profile: '/user.png',
-      name: 'Zac Manchester',
-      role: 'Professor',
-      affiliation: 'Carnegie Mellon University',
-    },
-    {
-      profile: '/user.png',
-      name: 'Brian Jackson',
-      role: 'PhD Candidate',
-      affiliation: 'Carnegie Mellon University',
-    },
-    {
-      profile: '/user.png',
-      name: 'Taylor Howell',
-      role: 'PhD Candidate',
-      affiliation: 'Carnegie Mellon University',
-    },
-  ];
+  const contributors = content.contributors;
 
   return (
     <>
@@ -95,9 +41,17 @@ export default function Home({ docs }) {
             <h1 className="text-heading-md lg:text-heading-lg font-logo text-grey-50 text-center">
               ALTRO
             </h1>
-            <p className="text-center text-body-md lg:text-body-lg mt-1">
-              Open-source, with many interfaces
-            </p>
+
+            <div class="text-center text-body-md lg:text-body-lg typewrite leading-6 my-4 text-grey-50 scrollable-div">
+              <Typewriter
+                options={{
+                  strings: content.typewriter,
+                  delay: 50,
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </div>
             <div className="flex justify-center mt-8">
               <Link href="/docs/getting-started/index">
                 <BasicButton label="Get Started" boxShadow={4}></BasicButton>
@@ -110,14 +64,14 @@ export default function Home({ docs }) {
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
           <h2 className="text-heading-md text-grey-50 font-semibold">Features</h2>
-          <div className="flex flex-wrap w-[100%] justify-around py-4">
+          <div className="flex flex-wrap justify-start py-4">
             {features.map((feature, i) => {
               return (
                 <div
-                  className="w-[100%] md:w-[45%] xl:w-[30%] flex flex-col items-center my-12"
+                  className="w-[100%] md:w-[49%] xl:w-[33%] flex flex-col items-center my-12"
                   key={i}
                 >
-                  <div className="text-heading-md">{feature.icon}</div>
+                  {/* <div className="text-heading-md">{feature.icon}</div> */}
                   <p className="text-body-lg font-bold text-grey-50 font-heading mt-4">
                     {feature.title}
                   </p>
@@ -131,17 +85,19 @@ export default function Home({ docs }) {
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col lg:space-y-0 lg:flex-row items-center lg:justify-around p-8 py-20 lg:py-32">
           <div>
-            <h3 className="text-heading-md max-w-[380px] leading-10 mb-4 font-heading text-center lg:text-left text-grey-50">
-              ALTRO beats most solvers.
-            </h3>
-            <p className="text-body-md max-w-[400px] font-body text-center lg:text-left text-grey-50">
-              Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum
-              dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus
-              orci luctus et ultrices posuere cubilia Curae.
-            </p>
+            {content.graphContent && (
+              <h3 className="text-heading-md max-w-[380px] leading-10 mb-4 font-heading text-center lg:text-left text-grey-50">
+                {content.graphContent.title}
+              </h3>
+            )}
+            {content.graphContent && (
+              <p className="text-body-md max-w-[400px] font-body text-center lg:text-left text-grey-50">
+                {content.graphContent.description}
+              </p>
+            )}
           </div>
           <div className="mt-16 lg:mt-0 w-[320px] h-[200px] sm:w-[480px] sm:h-[280px] md:w-[589px] md:h-[314px] relative">
-            <Image src="/graph.png" alt="line graph" layout="fill" />
+            <Image src={content.graph} alt="line graph" layout="fill" />
           </div>
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
@@ -149,20 +105,27 @@ export default function Home({ docs }) {
           <div className="flex flex-wrap w-[100%] justify-around py-2">
             {contributors.map((contributor, i) => {
               return (
-                <div className="w-[100%] lg:w-[30%] flex flex-col items-center my-12" key={i}>
-                  <div className="rounded-full overflow-hidden w-[134px] h-[134px] relative">
-                    <Image src={contributor.profile} alt="profile headshot" layout="fill" />
-                  </div>
-                  <p className="text-body-lg font-bold text-grey-50 font-heading mt-4">
-                    {contributor.name}
-                  </p>
-                  <p className="text-center max-w-[300px] text-body-md text-grey-50 mt-2">
-                    {contributor.role}
-                  </p>
-                  <p className="text-center max-w-[300px] text-body-md text-grey-50">
-                    {contributor.affiliation}
-                  </p>
-                </div>
+                <Link href={contributor.website} passHref key={i}>
+                  <a
+                    href={contributor.website}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-[100%] lg:w-[30%] flex flex-col items-center my-12"
+                  >
+                    <div className="rounded-full overflow-hidden w-[134px] h-[134px] relative">
+                      <Image src={contributor.profile} alt="profile headshot" layout="fill" />
+                    </div>
+                    <p className="text-body-lg font-bold text-grey-50 font-heading mt-4">
+                      {contributor.name}
+                    </p>
+                    <p className="text-center max-w-[300px] text-body-md text-grey-50 mt-2">
+                      {contributor.description}
+                    </p>
+                    <p className="text-center max-w-[300px] text-body-md text-grey-200 mt-2">
+                      {contributor.affiliation}
+                    </p>
+                  </a>
+                </Link>
               );
             })}
           </div>
@@ -176,9 +139,11 @@ export default function Home({ docs }) {
 
 export const getStaticProps = async () => {
   const docs = fetchDocContent();
+  const content = fetchHomeContent();
   return {
     props: {
       docs,
+      content,
     },
   };
 };

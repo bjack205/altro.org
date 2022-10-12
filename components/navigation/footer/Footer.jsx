@@ -6,7 +6,7 @@ import { BasicButton } from '../../data-display/button/basic-button/BasicButton'
 export const Footer = () => {
   return (
     <footer className="flex justify-center w-[100%] bg-on-background">
-      <div className="max-w-[1440px] w-[100%] px-8 py-8">
+      <div className="w-[100%] px-8 py-8">
         <div className="flex justify-between lg:items-center flex-col lg:flex-row text-surface--variant space-y-4 lg:space-x-20 lg:space-y-0">
           <div className="flex-grow">
             <div className="flex space-x-2">
@@ -28,10 +28,16 @@ export const Footer = () => {
                 <Link href="/citing">Citing</Link>
               </li>
               <li className="text-body-md text-grey-100 hover:text-white-500">
-                <Link href="https://github.com/bjack205/altro">Github</Link>
+                <Link href="https://github.com/bjack205/altro" passHref>
+                  <a href="https://github.com/bjack205/altro" target="_blank" rel="noreferrer">
+                    Github
+                  </a>
+                </Link>
               </li>
               <div className="flex justify-start">
-                <BasicButton label="Get Started" size="medium" />
+                <Link href="/docs/getting-started/index">
+                  <BasicButton label="Get Started" size="medium" />
+                </Link>
               </div>
             </ul>
           </div>

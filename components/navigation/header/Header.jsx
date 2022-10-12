@@ -26,7 +26,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
           (stickyHeader ? 'sticky top-[0px]' : '')
         }
       >
-        <div className="flex justify-between items-center w-[100%] max-w-[1440px] pr-4 lg:px-4 ">
+        <div className="flex justify-between items-center w-[100%] pr-4 lg:px-4 ">
           <div className="block lg:hidden w-[60px]">
             <HamburgerMenu animationType={'rotateX'} active={active} setActive={setActive} />
           </div>
