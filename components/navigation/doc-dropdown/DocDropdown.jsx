@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
-export const DocDropdown = ({ doc, key, length }) => {
+export const DocDropdown = ({ doc, index, length }) => {
   const router = useRouter();
   const [dropdown, setDropdown] = useState(false);
 
@@ -20,7 +20,7 @@ export const DocDropdown = ({ doc, key, length }) => {
   return (
     <div
       className={clsx('w-[100%] select-none border-t-[.5px] border-grey-600 border-solid', {
-        ['border-b-[.5px]']: key == length - 1,
+        ['border-b-[.5px]']: index == length - 1,
       })}
     >
       <li

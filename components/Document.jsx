@@ -6,8 +6,42 @@ import { Header } from './navigation/header/Header';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { DocDropdown } from './navigation/doc-dropdown/DocDropdown';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import { useEffect } from 'react';
+import { useSnackbar } from 'react-simple-snackbar';
 
 export default function Document({ docs, slug, content, config, previousDoc, nextDoc }) {
+  const [openSnackbar, closeSnackbar] = useSnackbar();
+
+  const copyToClipboard = (id) => {
+    const url = window.location.href.split('#')[0] + '#' + id;
+    navigator.clipboard.writeText(url);
+    openSnackbar('Copied to clipboard');
+    setTimeout(() => {
+      closeSnackbar();
+    }, 3000);
+  };
+
+  useEffect(() => {
+    console.log('effect');
+    const headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    for (let header of headers) {
+      let id = header.innerText.replaceAll(' ', '-').toLowerCase();
+      header.setAttribute('id', id);
+      header.classList.add('flex', 'items-center');
+      const link = document.createElement('span');
+      link.classList.add('hidden', 'mx-4', 'hover:cursor-pointer');
+      link.innerHTML = '<img src="/bs-link.svg"/>';
+      header.appendChild(link);
+      header.addEventListener('mouseover', () => {
+        link.classList.remove('hidden');
+      });
+      header.addEventListener('mouseleave', () => {
+        link.classList.add('hidden');
+      });
+      link.addEventListener('click', () => copyToClipboard(header.id));
+    }
+  }, [content]);
+
   return (
     <main className="w-[100%] flex flex-col items-center">
       <Header stickyHeader={true} docs={docs} />
@@ -52,7 +86,7 @@ export default function Document({ docs, slug, content, config, previousDoc, nex
                     </li>
                   );
                 } else {
-                  return <DocDropdown key={i} doc={doc} length={docs.length} />;
+                  return <DocDropdown key={i} index={i} doc={doc} length={docs.length} />;
                 }
               })}
             </ul>
