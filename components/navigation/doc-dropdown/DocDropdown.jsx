@@ -19,13 +19,13 @@ export const DocDropdown = ({ doc, index, length }) => {
 
   return (
     <div
-      className={clsx('w-[100%] select-none border-t-[.5px] border-grey-600 border-solid', {
+      className={clsx('w-[100%] select-none border-t-[.5px] border-doc-grey-600 border-solid', {
         ['border-b-[.5px]']: index == length - 1,
       })}
     >
       <li
         className={clsx(
-          'flex items-center justify-between text-[14px] px-8 py-3 text-grey-200 hover:cursor-pointer'
+          'flex items-center justify-between text-[14px] px-8 py-3 text-doc-grey-200 hover:cursor-pointer'
         )}
         onClick={() => setDropdown(!dropdown)}
       >
@@ -35,7 +35,7 @@ export const DocDropdown = ({ doc, index, length }) => {
         </span>
       </li>
       {dropdown && (
-        <ul className="w-[95%] flex flex-col mt-[-8px] pb-2 space-y-2">
+        <ul className="w-[95%] flex flex-col mt-[-4px] pb-2 space-y-2">
           {doc.children.map((child, j) => {
             return (
               <li key={j} className="">
@@ -43,9 +43,10 @@ export const DocDropdown = ({ doc, index, length }) => {
                   <a
                     href={'/docs/' + child.slug}
                     className={clsx(
-                      'hover:bg-hover-effect text-grey-100 py-1 text-[14px] px-8 pl-16 hover:cursor-pointer leading-6 flex items-center rounded-r-xl',
+                      'hover:bg-hover-effect text-doc-grey-100 py-1 text-[14px] px-8 pl-16 hover:cursor-pointer leading-6 flex items-center rounded-r-xl',
                       {
-                        ['bg-active-effect text-red-200']: router.asPath == '/docs/' + child.slug,
+                        ['bg-active-effect text-doc-red-200']:
+                          router.asPath == '/docs/' + child.slug,
                       }
                     )}
                   >

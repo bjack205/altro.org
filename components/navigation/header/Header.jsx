@@ -9,11 +9,12 @@ import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from 'react-icons/md';
+import { DocDropdown } from '../doc-dropdown/DocDropdown';
 
 export const Header = ({ links, stickyHeader, docs }) => {
   const router = useRouter();
   const [active, setActive] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+  const [dropdown, setDropdown] = useState(true);
 
   return (
     <>
@@ -119,22 +120,39 @@ export const Header = ({ links, stickyHeader, docs }) => {
                     )}
                   </li>
                   {dropdown && (
-                    <ul className="text-grey-100 mx-5 hover:text-white-500 text-body-md bg-grey-800 p-6">
+                    <ul className="text-grey-100 mx-5 hover:text-white-500 text-body-md mt-4">
                       {docs.map((doc, i) => {
-                        return (
-                          <>
+                        if (!doc.children) {
+                          return (
                             <li
                               key={i}
                               className={clsx(
-                                'text-grey-200 hover:text-white-500 text-body-md mb-3',
-                                {}
+                                'py-2 border-t-[.5px] border-grey-600 border-solid w-[100%] flex items-center',
+                                {
+                                  ['border-b-[.5px]']: i == docs.length - 1,
+                                }
                               )}
                               onClick={() => setActive(false)}
                             >
-                              <Link href={'/docs/' + doc.slug}>{doc.title}</Link>
+                              <Link href={'/docs/' + doc.slug}>
+                                <a
+                                  href={'/docs/' + doc.slug}
+                                  className={clsx(
+                                    'hover:bg-hover-effect text-grey-100 w-[95%] py-1 text-[14px] px-8 hover:cursor-pointer leading-6 flex items-center rounded-r-xl'
+                                  )}
+                                >
+                                  {doc.title}
+                                </a>
+                              </Link>
                             </li>
-                          </>
-                        );
+                          );
+                        } else {
+                          return (
+                            <div onClick={() => setActive(false)} key={i}>
+                              <DocDropdown index={i} doc={doc} length={docs.length} />
+                            </div>
+                          );
+                        }
                       })}
                     </ul>
                   )}

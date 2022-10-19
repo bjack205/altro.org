@@ -1,6 +1,6 @@
 .markdown-content {
   font-family: 'Hind', sans-serif;
-  color: var(--text-grey-200);
+  color: var(--text-doc-grey-200);
 
   strong {
     font-weight: 600;
@@ -106,12 +106,12 @@
     }
 
     tbody tr {
-      border-bottom: 1px solid var(--grey-700);
-      background-color: var(--grey-800);
+      border-bottom: 1px solid var(--doc-grey-700);
+      background-color: var(--doc-grey-800);
     }
 
     tbody tr:nth-of-type(even) {
-      background-color: var(--grey-700);
+      background-color: var(--doc-grey-700);
     }
 
     tbody tr:last-of-type {
