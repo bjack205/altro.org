@@ -12,7 +12,13 @@
     "prepare": "husky install",
     "test": "jest --watch",
     "test:ci": "jest --ci --all",
-    "test-commit": "jest --bail --findRelatedTests --passWithNoTests"
+    "test-commit": "jest --bail --findRelatedTests --passWithNoTests",
+    "cache-docs": "node scripts/cache.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run cache-docs && git add cache/data.js"
+    }
   },
   "dependencies": {
     "better-react-mathjax": "^2.0.2",
@@ -58,7 +64,8 @@
   "lint-staged": {
     "**/*.{js,jsx}": [
       "npm run format",
-      "npm run lint"
+      "npm run lint",
+      "git add"
     ]
   }
 }
