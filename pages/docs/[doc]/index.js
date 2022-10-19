@@ -2,7 +2,7 @@ import renderToString from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import { fetchDocBySlug, fetchDocContent } from '../../../lib/docs';
 import Head from 'next/head';
-// import { Footer } from '../../components/navigation/footer/Footer';
+// // import { Footer } from '../../components/navigation/footer/Footer';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import Document from '../../../components/Document';
 

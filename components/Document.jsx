@@ -3,14 +3,15 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Header } from './navigation/header/Header';
 // import { Footer } from '../../components/navigation/footer/Footer';
-import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { DocDropdown } from './navigation/doc-dropdown/DocDropdown';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'react-simple-snackbar';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { MathJax } from 'better-react-mathjax';
+import 'katex/dist/katex.min.css';
 
-export default function Document({ docs, slug, content, config, previousDoc, nextDoc }) {
+export default function Document({ docs, slug, content, previousDoc, nextDoc }) {
   const [openSnackbar, closeSnackbar] = useSnackbar();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(false);
@@ -63,26 +64,28 @@ export default function Document({ docs, slug, content, config, previousDoc, nex
       let id = header.innerText.replaceAll(' ', '-').toLowerCase();
       header.setAttribute('id', id);
       header.classList.add('flex', 'items-center');
-      const link = document.createElement('span');
-      link.classList.add('hidden', 'mx-4', 'hover:cursor-pointer');
-      link.innerHTML = '<img src="/bs-link.svg"/>';
-      header.appendChild(link);
-      header.addEventListener('mouseover', () => {
-        link.classList.remove('hidden');
-      });
-      header.addEventListener('mouseleave', () => {
-        link.classList.add('hidden');
-      });
-      link.addEventListener('click', () => copyToClipboard(header.id));
+      if (header.childNodes.length < 2) {
+        const link = document.createElement('span');
+        link.classList.add('hidden', 'mx-4', 'hover:cursor-pointer');
+        link.innerHTML = '<img src="/bs-link.svg"/>';
+        header.appendChild(link);
+        header.addEventListener('mouseover', () => {
+          link.classList.remove('hidden');
+        });
+        header.addEventListener('mouseleave', () => {
+          link.classList.add('hidden');
+        });
+        link.addEventListener('click', () => copyToClipboard(header.id));
+      }
     }
   }, [content]);
 
   return (
     <main className="w-[100%] flex flex-col items-center">
       <Header stickyHeader={true} docs={docs} />
-      <div className="w-[100%] flex justify-center relative lg:h-[calc(100vh-55px)] bg-grey-900 overflow-auto">
-        <div className="hidden lg:flex max-w-[300px] flex-col items-center 2xl:items-end w-[100%] h-[100%] bg-grey-900 py-2 overflow-auto">
-          <div className="w-[100%]">
+      <div className="w-[100%] flex min-h-[calc(100vh-55px)] relative bg-grey-900">
+        <div className="relative hidden lg:block h-[calc(100vh-55px)] max-w-[300px] w-[100%] bg-grey-900 py-2">
+          <div className="w-[100%] sticky top-[60px] left-0 overflow-auto">
             <div className="mb-6 mt-4 mx-4 pl-4 pr-3 flex items-center bg-grey-800 box-shadow--4 rounded-lg">
               <AiOutlineSearch />
               <input
@@ -95,7 +98,6 @@ export default function Document({ docs, slug, content, config, previousDoc, nex
                 ref={searchRef}
               />
             </div>
-            {/* <p className="my-4 text-body-lg font-semibold px-8">User Documentation</p> */}
             <ul className="flex flex-col space-y-0 w-[100%]">
               {docs.map((doc, i) => {
                 if (!doc.children) {
@@ -134,7 +136,7 @@ export default function Document({ docs, slug, content, config, previousDoc, nex
         <div className="w-[100%] lg:flex-grow flex justify-center bg-grey-700 lg:overflow-auto">
           <article
             className={clsx(
-              'p-8 lg:p-10  w-[100%] max-w-[930px] border-grey-900 m-4 2xl:m-8 bg-grey-800 flex flex-col rounded-sm border-[1px] border-solid',
+              'p-8 lg:p-10  w-[100%] max-w-[930px] border-grey-900 m-4 2xl:m-8 bg-grey-800 flex flex-col h-auto rounded-sm border-[1px] border-solid',
               {
                 ['justify-start']: active && results.length > 0,
                 ['justify-between']: !active || results.length == 0,
@@ -165,7 +167,6 @@ export default function Document({ docs, slug, content, config, previousDoc, nex
                           })}
                         </div>
                       );
-                      // return children;
                     } else {
                       return (
                         <li key={i}>
@@ -186,9 +187,7 @@ export default function Document({ docs, slug, content, config, previousDoc, nex
             ) : (
               <>
                 <div className="text-grey-50 markdown-content min-h-[calc(100vh-280px)]">
-                  <MathJaxContext config={config}>
-                    <MathJax>{content}</MathJax>
-                  </MathJaxContext>
+                  <MathJax>{content}</MathJax>
                 </div>
                 <div className="flex justify-between">
                   {previousDoc.slug !== slug ? (
