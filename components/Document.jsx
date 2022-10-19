@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'react-simple-snackbar';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MathJax } from 'better-react-mathjax';
-import 'katex/dist/katex.min.css';
 
 export default function Document({ docs, slug, content, previousDoc, nextDoc }) {
   const [openSnackbar, closeSnackbar] = useSnackbar();
