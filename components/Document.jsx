@@ -16,7 +16,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
   const [query, setQuery] = useState('');
   // const [active, setActive] = useState(false);
   const [results, setResults] = useState([]);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   const switchTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -64,7 +64,8 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
   // };
 
   useEffect(() => {
-    localStorage.getItem('theme') ? setTheme(localStorage.getItem('theme')) : setTheme('dark');
+    setQuery('');
+    localStorage.getItem('theme') ? setTheme(localStorage.getItem('theme')) : setTheme('light');
     const headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
     for (let header of headers) {
       let id = header.innerText.replaceAll(' ', '-').toLowerCase();
