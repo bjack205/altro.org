@@ -61,15 +61,15 @@ export const Header = ({ links, stickyHeader, docs }) => {
               })}
             </ul>
           </div>
-          <div className="flex items-center h-[100%] justify-end w-[60px] lg:w-[162px]">
-            <Link href="https://www.ri.cmu.edu/" passHref>
+          <div className="flex items-center h-[100%] justify-end w-[60px]">
+            <Link href="https://roboticexplorationlab.org/" passHref>
               <a
-                href="https://www.ri.cmu.edu/"
+                href="https://roboticexplorationlab.org/"
                 target="_blank"
                 rel="noreferrer"
-                className="h-[40px]"
+                className="scale-60"
               >
-                <Image src="/robotic-logo.svg" alt="robotic logo" width="50px" height="40px" />
+                <Image src="/logo-white.png" alt="robotic logo" width="110px" height="60px" />
               </a>
             </Link>
           </div>
@@ -148,9 +148,9 @@ export const Header = ({ links, stickyHeader, docs }) => {
                           );
                         } else {
                           return (
-                            <div onClick={() => setActive(false)} key={i}>
-                              <DocDropdown index={i} doc={doc} length={docs.length} />
-                            </div>
+                            // <div onClick={() => setActive(false)} key={i}>
+                            <DocDropdown key={i} index={i} doc={doc} length={docs.length} />
+                            // </div>
                           );
                         }
                       })}

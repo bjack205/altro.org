@@ -12,7 +12,6 @@ import Typewriter from 'typewriter-effect';
 import { fetchHomeContent } from '../lib/home';
 
 export default function Home({ docs, content }) {
-  console.log(content);
   const defaultOptions = {
     loop: true,
     autoplay: true,

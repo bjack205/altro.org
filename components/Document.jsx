@@ -14,7 +14,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 export default function Document({ docs, slug, content, previousDoc, nextDoc }) {
   const [openSnackbar, closeSnackbar] = useSnackbar();
   const [query, setQuery] = useState('');
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
   const [results, setResults] = useState([]);
   const [theme, setTheme] = useState('dark');
 
@@ -44,7 +44,6 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
       fetch(searchEndpoint(query))
         .then((res) => res.json())
         .then((res) => {
-          console.log('res', res);
           setResults(res.results);
         });
     } else {
@@ -52,17 +51,17 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
     }
   };
 
-  const onClick = (event) => {
-    if (searchRef.current && !searchRef.current.contains(event.target)) {
-      setActive(false);
-      window.removeEventListener('click', onClick);
-    }
-  };
+  // const onClick = (event) => {
+  //   if (searchRef.current && !searchRef.current.contains(event.target)) {
+  //     setActive(false);
+  //     window.removeEventListener('click', onClick);
+  //   }
+  // };
 
-  const onFocus = () => {
-    setActive(true);
-    window.addEventListener('click', onClick);
-  };
+  // const onFocus = () => {
+  //   setActive(true);
+  //   window.addEventListener('click', onClick);
+  // };
 
   useEffect(() => {
     localStorage.getItem('theme') ? setTheme(localStorage.getItem('theme')) : setTheme('dark');
@@ -92,16 +91,16 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
       <Header stickyHeader={true} docs={docs} />
       <div className="w-[100%] flex min-h-[calc(100vh-55px)] relative bg-doc-grey-900 text-doc-grey-200">
         <div className="relative hidden lg:block h-[calc(100vh-55px)] max-w-[300px] w-[100%] bg-doc-grey-900 py-2">
-          <div className="w-[100%] sticky top-[60px] left-0 overflow-auto">
-            <div className="mb-6 mt-4 mx-4 pl-4 pr-3 flex items-center bg-doc-grey-700 box-shadow--4 rounded-lg">
+          <div className="w-[100%] sticky top-[65px] left-0 overflow-auto">
+            <p className="font-logo px-5 mt-2">User Documentation</p>
+            <div className="mb-6 mt-4 mx-4 pl-4 pr-3 flex items-center bg-grey-700 box-shadow--4 rounded-lg text-grey-100">
               <AiOutlineSearch />
               <input
                 type="search"
-                className="w-[100%] pl-3 h-[35px] flex items-center text-[14px] bg-transparent leading-6 text-doc-grey-100 placeholder:text-doc-grey-100"
+                className="w-[100%] pl-3 h-[35px] flex items-center text-[14px] bg-transparent leading-6 text-grey-100 placeholder:text-grey-100"
                 onChange={onSearchChange}
                 placeholder="Search docs"
                 value={query}
-                onFocus={onFocus}
                 ref={searchRef}
               />
             </div>
@@ -145,8 +144,8 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
             className={clsx(
               'p-8 lg:p-10  w-[100%] max-w-[930px] border-doc-grey-900 my-4 lg:m-4 2xl:m-8 bg-doc-grey-900 flex flex-col h-auto rounded-sm border-[1px] border-solid relative',
               {
-                ['justify-start']: active && results.length > 0,
-                ['justify-between']: !active || results.length == 0,
+                ['justify-start']: query,
+                ['justify-between']: !query,
               }
             )}
           >
@@ -156,46 +155,50 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
             >
               {theme == 'dark' ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}
             </div>
-            {active && results.length > 0 ? (
+            {query ? (
               <>
                 <div className="text-heading-sm">Results:</div>
-                <ul className="flex flex-col space-y-2 list-[circle] pl-8 pt-4">
-                  {results.map((result, i) => {
-                    if (result.children) {
-                      return (
-                        <div key={i} className="flex flex-col space-y-2 list-[circle]">
-                          {result.children.map((child, j) => {
-                            return (
-                              <li key={i + j}>
-                                <Link href={'/docs/' + child.data.slug}>
-                                  <a
-                                    href={'/docs/' + child.data.slug}
-                                    className="text-doc-red-200 hover:underline"
-                                  >
-                                    {child.data.title}
-                                  </a>
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <li key={i}>
-                          <Link href={'/docs/' + result.data.slug}>
-                            <a
-                              href={'/docs/' + result.data.slug}
-                              className="text-doc-red-200 hover:underline"
-                            >
-                              {result.data.title}
-                            </a>
-                          </Link>
-                        </li>
-                      );
-                    }
-                  })}
-                </ul>
+                {results.length > 0 ? (
+                  <ul className="flex flex-col space-y-2 list-[circle] pl-8 pt-4">
+                    {results.map((result, i) => {
+                      if (result.children) {
+                        return (
+                          <div key={i} className="flex flex-col space-y-2 list-[circle]">
+                            {result.children.map((child, j) => {
+                              return (
+                                <li key={i + j}>
+                                  <Link href={'/docs/' + child.data.slug}>
+                                    <a
+                                      href={'/docs/' + child.data.slug}
+                                      className="text-doc-red-200 hover:underline"
+                                    >
+                                      {child.data.title}
+                                    </a>
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <li key={i}>
+                            <Link href={'/docs/' + result.data.slug}>
+                              <a
+                                href={'/docs/' + result.data.slug}
+                                className="text-doc-red-200 hover:underline"
+                              >
+                                {result.data.title}
+                              </a>
+                            </Link>
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                ) : (
+                  <span className="text-body-md mt-2 px-1">No results found</span>
+                )}
               </>
             ) : (
               <>
