@@ -1,0 +1,29 @@
+---
+slug: solver/solver-statistics
+title: Solver Statistics
+---
+
+# Solver Options
+
+## Solver Statistics
+
+ALTRO logs intermediate values during the course of the solve. These values are all
+stored in the [`SolverStats`](@ref) type, accessible via `solver.stats` or `Altro.stats(solver)`. This currently stores the following information:
+
+| Field              | Description                                                                      |
+| ------------------ | -------------------------------------------------------------------------------- |
+| `iterations`       | Total number of iterations                                                       |
+| `iterations_outer` | Number of outer loop (Augmented Lagrangian) iterations                           |
+| `iterations_pn`    | Number of projected newton iterations                                            |
+| `iteration`        | Vector of iteration number                                                       |
+| `iteration_outer`  | Vector of outer loop iteration number                                            |
+| `cost`             | Vector of costs                                                                  |
+| `dJ`               | Change in cost                                                                   |
+| `c_max`            | Maximum constrained violation                                                    |
+| `gradient`         | Approximation of dual optimality residual (2-norm of gradient of the Lagrangian) |
+| `penalty_max`      | Maximum penalty parameter                                                        |
+
+The other fields are used interally by the solver and not important to the end user.
+
+The vector fields of the `SolverStats` type can be converted to a dictionary via `Dict(stats::SolverStats)`,
+which can then be cast into a tabular format such as `DataFrame` from DataFrames.jl.

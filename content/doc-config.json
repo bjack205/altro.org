@@ -1,6 +1,7 @@
 [
   {
     "label": "Introduction",
+    "path": "introduction",
     "children": [
       {
         "label": "Overview",
@@ -12,12 +13,38 @@
       },
       {
         "label": "Installation",
-        "path": "introduction/overview.mdx"
+        "path": "introduction/installation.mdx"
       }
     ]
   },
   {
     "label": "Getting Started",
     "path": "getting-started.mdx"
+  },
+  {
+    "label": "Solver",
+    "path": "solver",
+    "children": [
+      {
+        "label": "Solver Statistics",
+        "path": "solver/solver-statistics.mdx"
+      },
+      {
+        "label": "Solver options",
+        "path": "solver/solver-options.mdx"
+      },
+      {
+        "label": "List of Options",
+        "path": "solver/options-list.mdx"
+      }
+    ]
+  },
+  {
+    "label": "Advanced Options",
+    "path": "advanced-options.mdx"
+  },
+  {
+    "label": "API",
+    "path": "api.mdx"
   }
 ]

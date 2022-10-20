@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HamburgerMenu } from '../hamburger-menu/HamburgerMenu';
 import styles from './header.module.scss';
 // import { RiShoppingCartLine } from 'react-icons/ri';
@@ -15,7 +15,15 @@ export const Header = ({ links, stickyHeader, docs }) => {
   const router = useRouter();
   const [active, setActive] = useState(false);
   const [dropdown, setDropdown] = useState(true);
+  const [docsUrl, setDocsUrl] = useState('/docs/getting-started');
 
+  useEffect(() => {
+    if (docs[0].children) {
+      setDocsUrl('/docs/' + docs[0].children[0].slug);
+    } else {
+      setDocsUrl('/docs/' + docs[0].slug);
+    }
+  }, []);
   return (
     <>
       <header
@@ -54,7 +62,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
                         </a>
                       </Link>
                     ) : (
-                      <Link href={link.url}>{link.label}</Link>
+                      <Link href={link.label == 'Docs' ? docsUrl : link.url}>{link.label}</Link>
                     )}
                   </li>
                 );

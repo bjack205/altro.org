@@ -8,15 +8,15 @@ This website is set up to allow the ALTRO team to make changes easily to the hom
 - Docs
 - Home
 
-Changing the contents within these directories and pushing up your changes, will automatically deploy those changes to your site. 
+Changing the contents within these directories and pushing up your changes, will automatically deploy those changes to your site.
 
-### Citing Directory 
+### Citing Directory
 
 The citing directory includes the citing.mdx file. This markdown file will display the content on the url '/citing'. Easily add or remove markdown, push up changes, and see citing page change.
 
 ### Docs Directory
 
-The docs directory has many files and directories. It needs to be nested according to how it will be nested on the docs page with the url of '/docs/[doc]/[subdoc]'. On the top of each markdown file in the docs directory, you will need to include the title and slug. The title is for how you want your document to be labled and displayed on searching. The slug will be for the url that will point to that markdown document. 
+The docs directory has many files and directories. It needs to be nested according to how it will be nested on the docs page with the url of '/docs/[doc]/[subdoc]'. On the top of each markdown file in the docs directory, you will need to include the title and slug. The title is for how you want your document to be labled and displayed on searching. The slug will be for the url that will point to that markdown document.
 
     ---
     slug: solver
@@ -30,7 +30,7 @@ If the markdown file is a nested doc, label the slug nested under the parent nam
     title: Getting Started
     ---
 
-After you include the slug and title, you can fill out that page with whatever markdown you would like. 
+After you include the slug and title, you can fill out that page with whatever markdown you would like.
 
 #### MathJax
 
@@ -112,7 +112,7 @@ The home directory includes a home.json file that will include the content that 
 
 ## Set up Local Environent
 
-To set up your local environment to see changes on your own server before pusing up changes, please follow the steps: 
+To set up your local environment to see changes on your own server before pusing up changes, please follow the steps:
 
 If you do not have node installed on your computer, you can download node from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
@@ -130,7 +130,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `content/*/*.mdx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `content/*/*.mdx`. The page updates as you edit the file and refresh.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/search](http://localhost:3000/api/search). This endpoint can be edited in `pages/api/search.js`.
 
@@ -140,8 +140,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 The search functionality of documentation is cached.
 
-If `npm install` was ran, then cache will be automatically updated when you make a new commit. If not, then the cache will not be updated if content in docs was changed. Search functionality then will not be up to date with current doc content. You can always manually update cache by running `npm run cache-docs`. 
-
+If `npm install` was ran, then cache will be automatically updated when you make a new commit. If not, then the cache will not be updated if content in docs was changed. Search functionality then will not be up to date with current doc content. You can always manually update cache by running `npm run cache-docs`.
 
 ## Deployed on Vercel
 

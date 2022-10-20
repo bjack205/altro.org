@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BasicButton } from '../../data-display/button/basic-button/BasicButton';
 
-export const Footer = () => {
+export const Footer = ({ docsUrl }) => {
   return (
     <footer className="flex justify-center w-[100%] bg-on-background">
       <div className="w-[100%] px-8 py-8">
@@ -26,7 +26,7 @@ export const Footer = () => {
           <div className="flex justify-between flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-20">
             <ul className="flex mt-4 space-y-4 lg:space-x-10 lg:space-y-0 flex-col lg:flex-row lg:items-center">
               <li className="text-body-md text-grey-100 hover:text-white-500">
-                <Link href="/docs/solver">Docs</Link>
+                <Link href={docsUrl}>Docs</Link>
               </li>
               <li className="text-body-md text-grey-100 hover:text-white-500">
                 <Link href="/citing">Citing</Link>
@@ -39,7 +39,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <div className="flex justify-start">
-                <Link href="/docs/getting-started">
+                <Link href={docsUrl}>
                   <BasicButton label="Get Started" size="medium" />
                 </Link>
               </div>
