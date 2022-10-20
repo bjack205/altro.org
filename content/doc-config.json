@@ -5,7 +5,6 @@
   },
   {
     "label": "Getting Started",
-    "path": "getting-started",
     "children": [
       {
         "label": "Getting Started",
@@ -23,7 +22,6 @@
   },
   {
     "label": "Interface",
-    "path": "interfaces",
     "children": [
       {
         "label": "Interface",
