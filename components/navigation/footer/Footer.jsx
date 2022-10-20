@@ -39,7 +39,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <div className="flex justify-start">
-                <Link href="/docs/getting-started/index">
+                <Link href="/docs/getting-started">
                   <BasicButton label="Get Started" size="medium" />
                 </Link>
               </div>

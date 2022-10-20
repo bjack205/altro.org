@@ -211,7 +211,7 @@ Header.defaultProps = {
   links: [
     {
       label: 'Docs',
-      url: '/docs/solver',
+      url: '/docs/getting-started',
     },
     {
       label: 'Citing',

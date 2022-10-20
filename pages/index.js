@@ -52,7 +52,7 @@ export default function Home({ docs, content }) {
               />
             </div>
             <div className="flex justify-center mt-8">
-              <Link href="/docs/getting-started/index">
+              <Link href="/docs/getting-started">
                 <BasicButton label="Get Started" boxShadow={4}></BasicButton>
               </Link>
             </div>

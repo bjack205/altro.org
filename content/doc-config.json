@@ -1,40 +1,23 @@
 [
   {
-    "label": "Solver",
-    "path": "solver.mdx"
+    "label": "Introduction",
+    "children": [
+      {
+        "label": "Overview",
+        "path": "introduction/overview.mdx"
+      },
+      {
+        "label": "Key Features",
+        "path": "introduction/key-features.mdx"
+      },
+      {
+        "label": "Installation",
+        "path": "introduction/overview.mdx"
+      }
+    ]
   },
   {
     "label": "Getting Started",
-    "children": [
-      {
-        "label": "Getting Started",
-        "path": "getting-started/index.mdx"
-      },
-      {
-        "label": "C++",
-        "path": "getting-started/c.mdx"
-      },
-      {
-        "label": "Julia",
-        "path": "getting-started/julia.mdx"
-      }
-    ]
-  },
-  {
-    "label": "Interface",
-    "children": [
-      {
-        "label": "Interface",
-        "path": "interfaces/index.mdx"
-      },
-      {
-        "label": "Solver Settings",
-        "path": "interfaces/solver-settings.mdx"
-      }
-    ]
-  },
-  {
-    "label": "References",
-    "path": "references.mdx"
+    "path": "getting-started.mdx"
   }
 ]

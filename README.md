@@ -1,4 +1,4 @@
-# ALTRO Website Set up
+# ALTRO Website
 
 ## Content Management Structure
 
@@ -34,7 +34,7 @@ After you include the slug and title, you can fill out that page with whatever m
 
 #### MathJax
 
-If you are including mathjax in the markdown file, you must place MathJax tags around it like so:
+If you are including mathjax in the markdown file, MathJax tags are required around content:
 
     <MathJax>
 
@@ -102,21 +102,21 @@ The doc-config.json file is for you to order how the documents will be placed in
 
 ### Home Directory
 
-The home directory includes a home.json file that will include the content that is being used on the home page. Here you can control what the following on home page:
+The home directory includes a home.json file that will include the content that is being used on the home page. Here you can control the following on home page:
 
-- sentences the typewriter is typing
-- features
-- graph title and
-- graph picture
-- contributors
+- Sentences the typewriter is typing
+- Features
+- Graph title and description
+- Graph picture
+- Contributors
 
 ## Set up Local Environent
 
-If you would like to set up your local environment to see changes on your own server before pusing up changes, please follow the steps: 
+To set up your local environment to see changes on your own server before pusing up changes, please follow the steps: 
 
 If you do not have node installed on your computer, you can download node from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
-First, install packages:
+First, install packages by moving into root directory of repository and running the following command:
 
 ```bash
 npm install
@@ -136,9 +136,15 @@ You can start editing the page by modifying `content/*/*.mdx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Search functionality
+
+The search functionality of documentation is cached.
+
+If `npm install` was ran, then cache will be automatically updated when you make a new commit. If not, then the cache will not be updated if content in docs was changed. Search functionality then will not be up to date with current doc content. You can always manually update cache by running `npm run cache-docs`. 
+
 
 ## Deployed on Vercel
 
 This Next.js app is deployed on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
