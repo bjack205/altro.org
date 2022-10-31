@@ -1,4 +1,11 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+
+if [ -x "$(command -v husky)" ]; then
+    . "$(dirname -- "$0")/_/husky.sh"
+fi
+
+if [ -x "$(command -v npm)" ]; then
 npx lint-staged
+fi

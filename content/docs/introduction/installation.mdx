@@ -1,0 +1,29 @@
+---
+slug: introduction/installation
+title: Installation
+---
+
+
+## Installation
+Altro.jl can be installed via the Julia package manager. Within the Julia
+REPL:
+```
+] # activate the package manager
+(v1.5) pkg> add Altro 
+```
+A specific version can be specified using
+```
+(v1.5) pkg> add Altro@0.5
+```
+Or you can check out the main branch with
+```
+(v1.5) pkg> add Altro#main
+```
+Lastly, if you want to clone the repo into your `.julia/dev/` directory for development, you can use
+```
+(v1.5) pkg> dev Altro 
+```
+
+This will automatically add all package dependencies (see [`Project.toml`](https://github.com/RoboticExplorationLab/Altro.jl/blob/master/Project.toml)).
+If you want to explicitly use any of these dependencies (such as [RobotDynamics.jl](https://github.com/RoboticExplorationLab/RobotDynamics.jl)), 
+you'll need to individually add those packages to your environment via the package manager.

@@ -1,0 +1,53 @@
+---
+slug: introduction/overview
+title: Overview
+---
+
+# Altro.jl Documention
+
+<br />
+
+## Overview
+
+ALTRO (Augmented Lagrangian TRajectory Optimizer) is a fast solver for solving
+nonlinear, constrained trajectory optimization problems of the form:
+
+<MathJax>
+
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
+equation.
+
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$
+
+Given a **formula** below
+
+$$s = ut + \\frac{1}{2}at^{2}$$
+
+Calculate the value of $s$ when $u = 10 $$\\frac{m}{s}$ and $a = 2\\frac{m}{s^{2}}$ at $t = 1s$$
+
+</MathJax>
+
+where `\mathcal{K}` is either the negative orthant or the second-order cone.
+
+ALTRO uses iterative LQR (iLQR) as the primary solver, which is used to generate
+locally-optimal linear feedback policies and satisfy the nonlinear dynamics
+constraints. Generic stage-wise state and control constraints are handled using
+an augmented Lagrangian.
+
+Once the augmented Lagrangian solver has converged to coarse tolerances, ALTRO
+can switch to an active-set projected Newton phase that provides fast convergence to
+tight constraint satisfaction.
+
+ALTRO has demonstrated state-of-the-art performance for convex conic MPC problems,
+beating SOCP solvers such as Mosek, ECOS, and SCS. For quadratic MPC problems,
+ALTRO has performance on-par or better than OSQP.
+
+ALTRO builds off the interfaces provided by
+[TrajectoryOptimization.jl](https://github.com/RoboticExplorationLab/TrajectoryOptimization.jl) and
+[RobotDynamics.jl](https://github.com/RoboticExplorationLab/RobotDynamics.jl).
+Please see the documentation for those packages for a more in-depth treatment
+of defining dynamics models and setting up trajectory optimization problems.
+The purpose of this documentation is to provide insight into the ALTRO
+algorithm, it's Julia implementation, and the options this solver provides.

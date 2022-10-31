@@ -10,8 +10,10 @@ import { fetchDocContent } from '../lib/docs';
 import Link from 'next/link';
 import Typewriter from 'typewriter-effect';
 import { fetchHomeContent } from '../lib/home';
+import { useEffect, useState } from 'react';
 
 export default function Home({ docs, content }) {
+  const [docsUrl, setDocsUrl] = useState('/docs/getting-started');
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -20,6 +22,14 @@ export default function Home({ docs, content }) {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
+
+  useEffect(() => {
+    if (docs[0].children) {
+      setDocsUrl('/docs/' + docs[0].children[0].slug);
+    } else {
+      setDocsUrl('/docs/' + docs[0].slug);
+    }
+  }, []);
 
   const features = content.features;
 
@@ -54,7 +64,7 @@ export default function Home({ docs, content }) {
               />
             </div>
             <div className="flex justify-center mt-8">
-              <Link href="/docs/getting-started/index">
+              <Link href={docsUrl}>
                 <BasicButton label="Get Started" boxShadow={4}></BasicButton>
               </Link>
             </div>
@@ -148,7 +158,7 @@ export default function Home({ docs, content }) {
         </div>
       </main>
 
-      <Footer />
+      <Footer docsUrl={docsUrl} />
     </>
   );
 }

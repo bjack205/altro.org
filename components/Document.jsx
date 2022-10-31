@@ -16,7 +16,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
   const [query, setQuery] = useState('');
   // const [active, setActive] = useState(false);
   const [results, setResults] = useState([]);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   const switchTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -64,7 +64,8 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
   // };
 
   useEffect(() => {
-    localStorage.getItem('theme') ? setTheme(localStorage.getItem('theme')) : setTheme('dark');
+    setQuery('');
+    localStorage.getItem('theme') ? setTheme(localStorage.getItem('theme')) : setTheme('light');
     const headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
     for (let header of headers) {
       let id = header.innerText.replaceAll(' ', '-').toLowerCase();
@@ -90,7 +91,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
     <main className="w-[100%] flex flex-col items-center" data-theme={theme}>
       <Header stickyHeader={true} docs={docs} />
       <div className="w-[100%] flex min-h-[calc(100vh-55px)] relative bg-doc-grey-900 text-doc-grey-200">
-        <div className="relative hidden lg:block h-[calc(100vh-55px)] max-w-[300px] w-[100%] bg-doc-grey-900 py-2">
+        <div className="relative hidden lg:block max-w-[300px] w-[100%] bg-doc-grey-900 py-2">
           <div className="w-[100%] sticky top-[65px] left-0 overflow-auto">
             <p className="font-logo px-5 mt-2">User Documentation</p>
             <div className="mb-6 mt-4 mx-4 pl-4 pr-3 flex items-center bg-grey-700 box-shadow--4 rounded-lg text-grey-100">

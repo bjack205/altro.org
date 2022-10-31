@@ -5,8 +5,18 @@ import { Footer } from '../components/navigation/footer/Footer';
 import { Header } from '../components/navigation/header/Header';
 import { fetchCitingContent } from '../lib/citing';
 import { fetchDocContent } from '../lib/docs';
+import { useEffect, useState } from 'react';
 
 export default function Citing({ docs, source }) {
+  const [docsUrl, setDocsUrl] = useState('/docs/getting-started');
+
+  useEffect(() => {
+    if (docs[0].children) {
+      setDocsUrl('/docs/' + docs[0].children[0].slug);
+    } else {
+      setDocsUrl('/docs/' + docs[0].slug);
+    }
+  }, []);
   const content = hydrate(source);
   return (
     <>
@@ -23,7 +33,7 @@ export default function Citing({ docs, source }) {
         </div>
       </main>
 
-      <Footer />
+      <Footer docsUrl={docsUrl} />
     </>
   );
 }

@@ -1,42 +1,50 @@
 [
   {
-    "label": "Solver",
-    "path": "solver.mdx"
+    "label": "Introduction",
+    "path": "introduction",
+    "children": [
+      {
+        "label": "Overview",
+        "path": "introduction/overview.mdx"
+      },
+      {
+        "label": "Key Features",
+        "path": "introduction/key-features.mdx"
+      },
+      {
+        "label": "Installation",
+        "path": "introduction/installation.mdx"
+      }
+    ]
   },
   {
     "label": "Getting Started",
-    "path": "getting-started",
+    "path": "getting-started.mdx"
+  },
+  {
+    "label": "Solver",
+    "path": "solver",
     "children": [
       {
-        "label": "Getting Started",
-        "path": "getting-started/index.mdx"
+        "label": "Solver Statistics",
+        "path": "solver/solver-statistics.mdx"
       },
       {
-        "label": "C++",
-        "path": "getting-started/c.mdx"
+        "label": "Solver options",
+        "path": "solver/solver-options.mdx"
       },
       {
-        "label": "Julia",
-        "path": "getting-started/julia.mdx"
+        "label": "List of Options",
+        "path": "solver/options-list.mdx"
       }
     ]
   },
   {
-    "label": "Interface",
-    "path": "interfaces",
-    "children": [
-      {
-        "label": "Interface",
-        "path": "interfaces/index.mdx"
-      },
-      {
-        "label": "Solver Settings",
-        "path": "interfaces/solver-settings.mdx"
-      }
-    ]
+    "label": "Advanced Options",
+    "path": "advanced-options.mdx"
   },
   {
-    "label": "References",
-    "path": "references.mdx"
+    "label": "API",
+    "path": "api.mdx"
   }
 ]
