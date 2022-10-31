@@ -32,7 +32,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
           <div className="flex space-x-0 items-center">
             <div className="lg:w-[163px] h-[55px] flex justify-start items-center hover:cursor-pointer">
               <Link href="/">
-                <a href="/" className="text-heading-sm text-red-400 font-logo">
+                <a href="/" className="text-heading-sm text-grey-100 font-logo">
                   ALTRO
                 </a>
               </Link>
@@ -61,15 +61,15 @@ export const Header = ({ links, stickyHeader, docs }) => {
               })}
             </ul>
           </div>
-          <div className="flex items-center h-[100%] justify-end w-[60px]">
+          <div className="flex items-center justify-end h-[35px]">
             <Link href="https://roboticexplorationlab.org/" passHref>
               <a
                 href="https://roboticexplorationlab.org/"
                 target="_blank"
                 rel="noreferrer"
-                className="scale-60"
+                class="h-[35px]"
               >
-                <Image src="/logo-white.png" alt="robotic logo" width="110px" height="60px" />
+                <Image src="/rex.svg" alt="robotic logo" width="30px" height="35px" />
               </a>
             </Link>
           </div>

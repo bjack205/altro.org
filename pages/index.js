@@ -25,6 +25,8 @@ export default function Home({ docs, content }) {
 
   const contributors = content.contributors;
 
+  const sponsors = content.sponsors;
+
   return (
     <>
       <Head>
@@ -101,7 +103,7 @@ export default function Home({ docs, content }) {
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
           <h2 className="text-heading-md text-grey-50 font-semibold">Credits</h2>
-          <div className="flex flex-wrap w-[100%] justify-around py-2">
+          <div className="flex flex-wrap w-[100%] justify-start py-2">
             {contributors.map((contributor, i) => {
               return (
                 <Link href={contributor.website} passHref key={i}>
@@ -109,7 +111,7 @@ export default function Home({ docs, content }) {
                     href={contributor.website}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-[100%] lg:w-[30%] flex flex-col items-center my-12"
+                    className="w-[100%] lg:w-[33%] flex flex-col items-center my-12"
                   >
                     <div className="rounded-full overflow-hidden w-[134px] h-[134px] relative">
                       <Image src={contributor.profile} alt="profile headshot" layout="fill" />
@@ -125,6 +127,21 @@ export default function Home({ docs, content }) {
                     </p>
                   </a>
                 </Link>
+              );
+            })}
+          </div>
+        </div>
+        <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
+          <h2 className="text-heading-md text-grey-50 font-semibold">Sponsors</h2>
+          <div className="flex flex-wrap w-[100%] justify-start py-2">
+            {sponsors.map((sponsor, i) => {
+              return (
+                <div
+                  className="relative my-12 w-[100%] lg:w-[33%] flex flex-col items-center my-12"
+                  key={i}
+                >
+                  <img src={sponsor.image} alt="sponsor logo" width="134px" height="auto" />
+                </div>
               );
             })}
           </div>

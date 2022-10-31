@@ -16,7 +16,7 @@ export const Footer = () => {
                 </a>
               </Link>
               <Link href="/">
-                <span className="text-heading-sm text-red-400 font-logo">ALTRO</span>
+                <span className="text-heading-sm text-grey-100 font-logo">ALTRO</span>
               </Link>
             </div>
             <p className="text-surface--variant max-w-[500px] body-sm pt-6">
