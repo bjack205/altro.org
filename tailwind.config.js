@@ -60,7 +60,7 @@ module.exports = {
       'white-900': 'var(--white-900)',
       'disabled': 'var(--disabled)',
       'dialog-background': 'rgba(0, 0, 0, .2)',
-      'active-effect': 'rgba(179, 29, 36, .1)',
+      'active-effect': 'var(--active-effect)',
       'hover-effect': 'var(--hover-effect)',
     },
     fontFamily: {

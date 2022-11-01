@@ -10,13 +10,13 @@ export const Footer = ({ docsUrl }) => {
         <div className="flex justify-between lg:items-center flex-col lg:flex-row text-surface--variant space-y-4 lg:space-x-20 lg:space-y-0">
           <div className="flex-grow">
             <div className="flex space-x-2">
-              <Link href="https://www.ri.cmu.edu/" passHref>
-                <a href="https://www.ri.cmu.edu/" target="_blank" rel="noreferrer">
-                  <Image src="/robotic-logo.svg" alt="Robotics Logo" width="40px" height="40px" />
+              <Link href="https://roboticexplorationlab.org/" passHref>
+                <a href="https://roboticexplorationlab.org/" target="_blank" rel="noreferrer">
+                  <Image src="/REX.svg" alt="Robotics Logo" width="40px" height="40px" />
                 </a>
               </Link>
               <Link href="/">
-                <span className="text-heading-sm text-grey-100 font-logo">ALTRO</span>
+                <span className="text-heading-sm text-red-300 font-logo">ALTRO</span>
               </Link>
             </div>
             <p className="text-surface--variant max-w-[500px] body-sm pt-6">

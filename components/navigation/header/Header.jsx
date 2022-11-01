@@ -40,7 +40,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
           <div className="flex space-x-0 items-center">
             <div className="lg:w-[163px] h-[55px] flex justify-start items-center hover:cursor-pointer">
               <Link href="/">
-                <a href="/" className="text-heading-sm text-grey-100 font-logo">
+                <a href="/" className="text-heading-sm text-red-300 font-logo">
                   ALTRO
                 </a>
               </Link>

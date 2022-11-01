@@ -28,7 +28,7 @@ export const DocDropdown = ({ doc, index, length }) => {
     >
       <li
         className={clsx(
-          'flex items-center justify-between text-[14px] px-8 py-3 text-grey-200 lg:text-doc-grey-200 hover:cursor-pointer'
+          'flex items-center justify-between text-[14px] pl-8 pr-4 py-3 text-grey-200 lg:text-doc-grey-200 hover:cursor-pointer'
         )}
         onClick={() => setDropdown(!dropdown)}
       >

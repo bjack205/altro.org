@@ -16,6 +16,7 @@ import RemarkMathPlugin from 'remark-math';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import xonokai from '../node_modules/react-syntax-highlighter/src/styles/prism/xonokai';
+import vs from '../node_modules/react-syntax-highlighter/src/styles/prism/vs';
 
 export default function Document({ docs, slug, content, previousDoc, nextDoc }) {
   const [openSnackbar, closeSnackbar] = useSnackbar();
@@ -80,7 +81,10 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
       if (header.childNodes.length < 2) {
         const link = document.createElement('span');
         link.classList.add('hidden', 'mx-4', 'hover:cursor-pointer');
-        link.innerHTML = '<img src="/bs-link.svg" className="text-doc-grey-100 bg-doc-grey-100" />';
+        link.innerHTML =
+          theme == 'dark'
+            ? `<img src="/bs-link.svg" alt="link" />`
+            : `<img src="/bs-link-dark.svg" alt="link" />`;
         header.appendChild(link);
         header.addEventListener('mouseover', () => {
           link.classList.remove('hidden');
@@ -91,7 +95,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
         link.addEventListener('click', () => copyToClipboard(header.id));
       }
     }
-  }, [content]);
+  }, [content, theme]);
 
   return (
     <main className="w-[100%] flex flex-col items-center" data-theme={theme}>
@@ -223,7 +227,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                             language={match[1]}
                             // eslint-disable-next-line react/no-children-prop
                             children={String(children).replace(/\n$/, '')}
-                            style={xonokai}
+                            style={theme === 'dark' ? xonokai : vs}
                             PreTag="section" // parent tag
                             {...props}
                           />
