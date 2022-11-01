@@ -2,21 +2,21 @@
 
 ## Content Management Structure
 
-This website is set up to allow the ALTRO team to make changes easily to the home page, citing page, and documentation pages. Everything you will need is within the content directory in this repository. Inside this directory you will find a directory for all your pages:
+This website is set up to allow the ALTRO team to make changes easily to the home page, citing page, and documentation pages. Everything you will need is within the content directory of this repository. Inside this directory you will find a directory for all your pages:
 
 - Citing
 - Docs
 - Home
 
-Changing the contents within these directories and pushing up your changes, will automatically deploy those changes to your site.
+Changing the contents within these directories and pushing up your changes to the main branch will automatically deploy those changes to your site.
 
 ### Citing Directory
 
-The citing directory includes the citing.mdx file. This markdown file will display the content on the url '/citing'. Easily add or remove markdown, push up changes, and see citing page change.
+The citing directory includes the citing.mdx file. This markdown file will display the content on the url '/citing'. Easily add or remove markdown, push up changes, and see the citing page change.
 
 ### Docs Directory
 
-The docs directory consists of a nested structure of files and directories. It should be nested according to how it will be nested on the docs page with the urls of '/docs/[doc]' or '/docs/[doc]/[subdoc]'. This is mainly for organization so you can easily configure your doc-config.json file by the same structure in your docs directory. You can fill out that page with whatever markdown/html you would like. It will display both markdown syntax and html sytax. The Application also supports github flavored markdown so feel free to use any syntax from (https://github.github.com/gfm/)[https://github.github.com/gfm/]. After making changes, you will have refresh the browser when testing on your local environment. The markdown-example.mdx file within docs directory also shows examples.
+The docs directory consists of a nested structure of files and directories. It should be nested according to how it will be nested on the docs page. This is mainly for organization so you can easily configure your doc-config.json file by the same structure in your docs directory. You can fill out that page with whatever markdown/html you would like. It will display both markdown syntax and html sytax. The application supports github flavored markdown so feel free to use any syntax from [https://github.github.com/gfm/](https://github.github.com/gfm/). After making changes, you will have refresh the browser when testing on your local environment. The markdown-example.mdx file within docs directory is there to show examples in markdown.
 
 #### MathJax
 
@@ -36,11 +36,11 @@ $$
 
 ### Code Syntax Highlighting
 
-Code blocks will be automatically highlighted when the programming name is placed right after the code block ticks as ````juila`. If there is no programming language, the code block will be unstyled.
+Code blocks will be automatically highlighted when the programming name is placed right after the code block ticks as ```juila. If there is no programming language, the code block will be unstyled.
 
 ### Doc-config.json
 
-The doc-config.json file is for you to order how the documents will be placed in the documentation. This is a very important step because if it is not included in the config file, it will NOT show up on the page. It is in JSON format of doc objects. Each doc object must have a label and path. The path is to the mdx file so if your mdx file is nested directly in docs root directory it will be `[nameofdoc].mdx`. If it is nested doc, it will be placed within the children of that object as so:
+The doc-config.json file is to order how the documents will be placed in the documentation. This is a very important step because if it is not included in the config file, it will NOT show up on the page. It is in JSON format of doc objects. Each doc object must have a label and path. The path is to the mdx file so if your mdx file is nested directly in docs root directory it will be `[nameofdoc].mdx`. If it is nested doc, it will be placed within the children of that object as so:
 
 ```
 [
@@ -108,13 +108,15 @@ First, install packages by moving into root directory of repository and running 
 npm install
 ```
 
+You will only have to do this once. A directory called node_modules should be created locally and you should not ever have to repeat this command unless you are updating your node_modules or you deleted this directory.
+
 Second, run the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You will have to run this command everytime you want to run your development server.
 
 You can start editing the page by modifying `content/*/*.mdx`. The page updates as you edit the file and refresh.
 
