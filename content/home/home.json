@@ -48,21 +48,21 @@
     {
       "profile": "http://roboticexplorationlab.org/img/people/zac.jpg",
       "name": "Zac Manchester",
-      "description": "Assistant Professor",
+      "description": "Algorithm Development",
       "affiliation": "Carnegie Mellon University",
       "website": "https://www.linkedin.com/in/zacmanchester/"
     },
     {
       "profile": "http://roboticexplorationlab.org/img/people/brian.jpg",
       "name": "Brian Jackson",
-      "description": "Real-time motion planning",
+      "description": "Author/Maintainer",
       "affiliation": "Carnegie Mellon University",
       "website": "https://bjack205.github.io/"
     },
     {
       "profile": "http://roboticexplorationlab.org/img/people/taylor.jpg",
       "name": "Taylor Howell",
-      "description": "Model-predictive control and differentiable simulators for contact",
+      "description": "Algorithm Development",
       "affiliation": "Stanford University",
       "website": "https://thowell.github.io/"
     }

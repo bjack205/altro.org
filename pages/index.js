@@ -113,7 +113,7 @@ export default function Home({ docs, content }) {
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
           <h2 className="text-heading-md text-grey-50 font-semibold">Credits</h2>
-          <div className="flex flex-wrap w-[100%] justify-start py-2">
+          <div className="flex flex-wrap w-[100%] justify-center py-2">
             {contributors.map((contributor, i) => {
               return (
                 <Link href={contributor.website} passHref key={i}>
@@ -143,7 +143,7 @@ export default function Home({ docs, content }) {
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
           <h2 className="text-heading-md text-grey-50 font-semibold">Sponsors</h2>
-          <div className="flex flex-wrap w-[100%] justify-start py-2">
+          <div className="flex flex-wrap w-[100%] justify-center py-2">
             {sponsors.map((sponsor, i) => {
               return (
                 <div
