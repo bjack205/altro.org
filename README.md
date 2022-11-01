@@ -16,46 +16,31 @@ The citing directory includes the citing.mdx file. This markdown file will displ
 
 ### Docs Directory
 
-The docs directory has many files and directories. It needs to be nested according to how it will be nested on the docs page with the url of '/docs/[doc]/[subdoc]'. On the top of each markdown file in the docs directory, you will need to include the title and slug. The title is for how you want your document to be labled and displayed on searching. The slug will be for the url that will point to that markdown document.
-
-    ---
-    slug: solver
-    title: Solver
-    ---
-
-If the markdown file is a nested doc, label the slug nested under the parent name as so:
-
-    ---
-    slug: getting-started/index
-    title: Getting Started
-    ---
-
-After you include the slug and title, you can fill out that page with whatever markdown you would like.
+The docs directory consists of a nested structure of files and directories. It should be nested according to how it will be nested on the docs page with the urls of '/docs/[doc]' or '/docs/[doc]/[subdoc]'. This is mainly for organization so you can easily configure your doc-config.json file by the same structure in your docs directory. You can fill out that page with whatever markdown/html you would like. It will display both markdown syntax and html sytax. The Application also supports github flavored markdown so feel free to use any syntax from (https://github.github.com/gfm/)[https://github.github.com/gfm/]. After making changes, you will have refresh the browser when testing on your local environment. The markdown-example.mdx file within docs directory also shows examples.
 
 #### MathJax
 
-If you are including mathjax in the markdown file, MathJax tags are required around content:
+The markdown page can easily handle mathjax like so:
 
-    <MathJax>
+```
+$$
+\begin{aligned}
+  \min_{x_{0:N},u_{0:N-1}} \quad & \ell_f(x_N) + \sum_{k=0}^{N-1} \ell_k(x_k, u_k, dt) \\
+  \textrm{s.t.}            \quad & x_{k+1} = f(x_k, u_k), \\
+                                & g_k(x_k,u_k) \in \mathcal{K}, \\
+                                & h_k(x_k,u_k) = 0.
+\end{aligned}
+$$
 
-    Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
-    equation.
+```
 
-    $$
-    L = \frac{1}{2} \rho v^2 S C_L
-    $$
+### Code Syntax Highlighting
 
-    Given a **formula** below
-
-    $$s = ut + \\frac{1}{2}at^{2}$$
-
-    Calculate the value of $s$ when $u = 10 $$\\frac{m}{s}$ and $a = 2\\frac{m}{s^{2}}$ at $t = 1s$$
-
-    </MathJax>
+Code blocks will be automatically highlighted when the programming name is placed right after the code block ticks as ````juila`. If there is no programming language, the code block will be unstyled.
 
 ### Doc-config.json
 
-The doc-config.json file is for you to order how the documents will be placed in the documentation. This is a very important step because if it is not included in the config file, it will NOT show up on the page. It is in JSON format of doc objects. Each doc object must have a label and path. The path is to the mdx file from the docs directory and must match the slug within that file with the mdx extension. If it is nested doc, it will be placed within the children of that object as so:
+The doc-config.json file is for you to order how the documents will be placed in the documentation. This is a very important step because if it is not included in the config file, it will NOT show up on the page. It is in JSON format of doc objects. Each doc object must have a label and path. The path is to the mdx file so if your mdx file is nested directly in docs root directory it will be `[nameofdoc].mdx`. If it is nested doc, it will be placed within the children of that object as so:
 
 ```
 [
@@ -109,6 +94,7 @@ The home directory includes a home.json file that will include the content that 
 - Graph title and description
 - Graph picture
 - Contributors
+- Sponsors
 
 ## Set up Local Environent
 
