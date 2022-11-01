@@ -81,10 +81,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
       if (header.childNodes.length < 2) {
         const link = document.createElement('span');
         link.classList.add('hidden', 'mx-4', 'hover:cursor-pointer');
-        link.innerHTML =
-          theme == 'dark'
-            ? `<img src="/bs-link.svg" alt="link" />`
-            : `<img src="/bs-link-dark.svg" alt="link" />`;
+        link.innerHTML = `<img src="/bs-link.svg" alt="link" />`;
         header.appendChild(link);
         header.addEventListener('mouseover', () => {
           link.classList.remove('hidden');
