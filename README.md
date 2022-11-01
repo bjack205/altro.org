@@ -16,7 +16,7 @@ The citing directory includes the citing.mdx file. This markdown file will displ
 
 ### Docs Directory
 
-The docs directory consists of a nested structure of files and directories. It should be nested according to how it will be nested on the docs page. This is mainly for organization so you can easily configure your doc-config.json file by the same structure in your docs directory. You can fill out that page with whatever markdown/html you would like. It will display both markdown syntax and html sytax. The application supports github flavored markdown so feel free to use any syntax from [https://github.github.com/gfm/](https://github.github.com/gfm/). After making changes, you will have refresh the browser when testing on your local environment. The markdown-example.mdx file within docs directory is there to show examples in markdown.
+The docs directory consists of a nested structure of files and directories. It should be nested according to how it will be nested on the docs page. This is mainly for organization so you can easily configure your doc-config.json file by the same structure in your docs directory. You can fill out that page with whatever markdown/html you would like. It will display both markdown syntax and html syntax. The application supports github flavored markdown so feel free to use any syntax from [https://github.github.com/gfm/](https://github.github.com/gfm/). After making changes, you will have to refresh the browser when testing on your local environment. The markdown-example.mdx file within docs directory is there to show examples in markdown.
 
 #### MathJax
 
@@ -36,11 +36,11 @@ $$
 
 ### Code Syntax Highlighting
 
-Code blocks will be automatically highlighted when the programming name is placed right after the code block ticks as ```juila. If there is no programming language, the code block will be unstyled.
+Code blocks will be automatically highlighted when the programming name is placed right after the code block ticks like so: ```juila. If there is no programming language, the code block will be unstyled.
 
 ### Doc-config.json
 
-The doc-config.json file is to order how the documents will be placed in the documentation. This is a very important step because if it is not included in the config file, it will NOT show up on the page. It is in JSON format of doc objects. Each doc object must have a label and path. The path is to the mdx file so if your mdx file is nested directly in docs root directory it will be `[nameofdoc].mdx`. If it is nested doc, it will be placed within the children of that object as so:
+The doc-config.json file is to order how the documents will be placed in the documentation. This is a very important step because if it is not included in the config file, it will NOT show up on the page. It is written in JSON format of doc objects with properties of label, path, and children. The label will be placed as the title on the left navigation panel of docs page. The path is to the mdx file so if your mdx file is nested directly in docs root directory it will be `[docName].mdx`. Your url path name is basically your file name. If it is nested doc, it will be placed within the children of that object as so:
 
 ```
 [
