@@ -69,8 +69,7 @@
     "**/*.{js,jsx}": [
       "npm run cache-docs",
       "npm run format",
-      "npm run lint",
-      "git add"
+      "npm run lint"
     ]
   }
 }
