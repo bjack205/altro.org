@@ -75,7 +75,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
                 href="https://roboticexplorationlab.org/"
                 target="_blank"
                 rel="noreferrer"
-                class="h-[35px]"
+                className="h-[35px]"
               >
                 <Image src="/rex.svg" alt="robotic logo" width="30px" height="35px" />
               </a>

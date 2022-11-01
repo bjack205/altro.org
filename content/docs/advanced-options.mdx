@@ -1,8 +1,3 @@
----
-slug: advanced-options
-title: Advanced Options
----
-
 # Advanced Options
 
 ## Infeasible Start
@@ -23,7 +18,7 @@ states in the original problem, so the problem becomes more expensive to solve.
 We specify that we want an infeasible start by passing the `infeasible` flag to
 the ALTRO constructor:
 
-```@example infeasible
+```julia
 using Altro
 prob,opts = Problems.DubinsCar(:escape)
 solver = ALTROSolver(prob, opts, infeasible=true, R_inf=0.1)
@@ -44,7 +39,7 @@ initial_trajectory!(solver, Z0)
 where `X0::Union{SVector, Matrix, Vector{<:StaticVector}}` and
 `Z0::SampledTrajectory`.
 
-```@docs
+```julia
 InfeasibleModel
 InfeasibleConstraint
 infeasible_trajectory
@@ -58,7 +53,7 @@ has energy-conserving behaviors and also preserves any implicit norms in the dyn
 (such as the norm on a quaternion representing rotations). The following example
 shows how to use an implicit integrator:
 
-```@example implicit
+```julia
 using RobotZoo: Cartpole
 using RobotDynamics
 using TrajectoryOptimization
@@ -108,7 +103,7 @@ while to compile the first time. If you want to disable the use of Octavian,
 set the environment variable `ALTRO_USE_OCTAVIAN = false` prior to using Altro.
 If Altro has already precompiled, you'll need to delete the compiled cache using
 
-```
+```julia
 rm -rf ~/.julia/compiled/v1.x/Altro/*
 ```
 

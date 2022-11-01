@@ -8,7 +8,7 @@ export default function handler(req, res) {
         let childrenDocs = doc.children.filter(
           (child) =>
             child.content.toLowerCase().includes(req.query.q.toLowerCase()) ||
-            child.data.title.toLowerCase().includes(req.query.q.toLowerCase())
+            child.title.toLowerCase().includes(req.query.q.toLowerCase())
         );
         if (childrenDocs.length) {
           results.push({
@@ -19,7 +19,7 @@ export default function handler(req, res) {
       } else {
         if (
           doc.content.toLowerCase().includes(req.query.q.toLowerCase()) ||
-          doc.data.title.toLowerCase().includes(req.query.q.toLowerCase())
+          doc.title.toLowerCase().includes(req.query.q.toLowerCase())
         ) {
           results.push(doc);
         }

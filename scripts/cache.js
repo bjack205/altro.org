@@ -9,7 +9,7 @@ const docsDirectory = path.join(process.cwd(), 'content/docs');
 function getDocs() {
   const pages = documentation;
 
-  const results = pages.map((page, i) => {
+  const results = pages.map((page) => {
     if (!page.children) {
       const fullPath = path.join(docsDirectory, page.path);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -20,17 +20,12 @@ function getDocs() {
           yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }),
         },
       });
-      const matterData = matterResult.data;
-      matterData.fullPath = fullPath;
-      const slug = page.path.replace(/\.mdx$/, '');
-      matterData.index = i;
-
-      if (matterData.slug !== slug) {
-        throw new Error('slug field not match with the path of its content source');
-      }
+      matterResult.fullPath = fullPath;
+      matterResult.title = page.label;
+      matterResult.slug = page.path.replace(/\.mdx$/, '');
       return matterResult;
     } else if (page.children) {
-      const childResults = page.children.map((child) => {
+      const results = page.children.map((child) => {
         const fullPath = path.join(docsDirectory, child.path);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const matterResult = matter(fileContents, {
@@ -38,18 +33,14 @@ function getDocs() {
             yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }),
           },
         });
-        const matterData = matterResult.data;
-        matterData.fullPath = fullPath;
-        const slug = child.path.replace(/\.mdx$/, '');
-
-        if (matterData.slug !== slug) {
-          throw new Error('slug field not match with the path of its content source');
-        }
+        matterResult.fullPath = fullPath;
+        matterResult.title = child.label;
+        matterResult.slug = child.path.replace(/\.mdx$/, '');
         return matterResult;
       });
       return {
         title: page.label,
-        children: childResults,
+        children: results,
       };
     }
   });

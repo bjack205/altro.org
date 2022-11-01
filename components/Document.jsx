@@ -1,15 +1,21 @@
 import Link from 'next/link';
-// import fs from 'fs';
 import clsx from 'clsx';
 import { Header } from './navigation/header/Header';
-// import { Footer } from '../../components/navigation/footer/Footer';
 import { DocDropdown } from './navigation/doc-dropdown/DocDropdown';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'react-simple-snackbar';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { MathJax } from 'better-react-mathjax';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
+import ReactMarkdown from 'react-markdown';
+import 'katex/dist/katex.css';
+import rehypeRaw from 'rehype-raw';
+import rehypeKatex from 'rehype-katex';
+import remarkGfm from 'remark-gfm';
+import RemarkMathPlugin from 'remark-math';
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import xonokai from '../node_modules/react-syntax-highlighter/src/styles/prism/xonokai';
 
 export default function Document({ docs, slug, content, previousDoc, nextDoc }) {
   const [openSnackbar, closeSnackbar] = useSnackbar();
@@ -168,12 +174,12 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                             {result.children.map((child, j) => {
                               return (
                                 <li key={i + j}>
-                                  <Link href={'/docs/' + child.data.slug}>
+                                  <Link href={'/docs/' + child.slug}>
                                     <a
-                                      href={'/docs/' + child.data.slug}
+                                      href={'/docs/' + child.slug}
                                       className="text-doc-red-200 hover:underline"
                                     >
-                                      {child.data.title}
+                                      {child.title}
                                     </a>
                                   </Link>
                                 </li>
@@ -184,12 +190,12 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                       } else {
                         return (
                           <li key={i}>
-                            <Link href={'/docs/' + result.data.slug}>
+                            <Link href={'/docs/' + result.slug}>
                               <a
-                                href={'/docs/' + result.data.slug}
+                                href={'/docs/' + result.slug}
                                 className="text-doc-red-200 hover:underline"
                               >
-                                {result.data.title}
+                                {result.title}
                               </a>
                             </Link>
                           </li>
@@ -204,7 +210,31 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
             ) : (
               <>
                 <div className="text-doc-grey-100 markdown-content min-h-[calc(100vh-280px)]">
-                  <MathJax>{content}</MathJax>
+                  <ReactMarkdown
+                    rehypePlugins={[rehypeRaw, rehypeKatex]}
+                    remarkPlugins={[remarkGfm, RemarkMathPlugin]}
+                    // eslint-disable-next-line react/no-children-prop
+                    children={content}
+                    components={{
+                      code({ inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || '');
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            language={match[1]}
+                            // eslint-disable-next-line react/no-children-prop
+                            children={String(children).replace(/\n$/, '')}
+                            style={xonokai}
+                            PreTag="section" // parent tag
+                            {...props}
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  ></ReactMarkdown>
                 </div>
                 <div className="flex justify-between">
                   {previousDoc.slug !== slug ? (

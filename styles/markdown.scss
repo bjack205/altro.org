@@ -10,16 +10,19 @@
     font-size: 2.369rem;
     font-family: 'Montserrat', sans-serif;
     line-height: 3.2rem;
+    margin: 0.75rem 0;
   }
 
   h2 {
     font-size: 1.777rem;
     font-family: 'Montserrat', sans-serif;
+    margin: 0.75rem 0;
   }
 
   h3 {
     font-size: 1.333rem;
     font-family: 'Montserrat', sans-serif;
+    margin: 0.75rem 0;
   }
 
   h4 {
@@ -41,19 +44,19 @@
     margin: 0.75rem 0;
   }
 
-  pre code {
-    display: block;
-    margin: 1rem 0;
-    white-space: pre;
-    max-width: 100%;
-    min-width: 100px;
-    padding: 1rem 1.5rem;
-    background-color: var(--grey-700);
-    color: white;
-    font-family: monospace;
-    border-radius: 0.2rem;
-    overflow: auto;
-  }
+  // pre code {
+  //   display: block;
+  //   margin: 1rem 0;
+  //   white-space: pre;
+  //   max-width: 100%;
+  //   min-width: 100px;
+  //   padding: 1rem 1.5rem;
+  //   background-color: var(--grey-700);
+  //   color: white;
+  //   font-family: monospace;
+  //   border-radius: 0.2rem;
+  //   overflow: auto;
+  // }
 
   blockquote {
     background: var(--grey-700);

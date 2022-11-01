@@ -1,20 +1,11 @@
-import renderToString from 'next-mdx-remote/render-to-string';
-import hydrate from 'next-mdx-remote/hydrate';
 import { fetchDocBySlug, fetchDocContent } from '../../../../lib/docs';
 import Head from 'next/head';
-// import { Footer } from '../../components/navigation/footer/Footer';
-import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import Document from '../../../../components/Document';
+// import rehypeKatex from 'rehype-katex';
+// import remarkMath from 'remark-math';
+// import katex from 'katex';
 
-const components = { MathJax, MathJaxContext };
-
-export default function Doc({ slug, source, docs, nextDoc, previousDoc }) {
-  const content = hydrate(source, { components });
-
-  const config = {
-    loader: { load: ['input/asciimath'] },
-  };
-
+export default function Doc({ slug, docs, nextDoc, previousDoc, content }) {
   return (
     <>
       <Head>
@@ -27,7 +18,6 @@ export default function Doc({ slug, source, docs, nextDoc, previousDoc }) {
         docs={docs}
         slug={slug}
         content={content}
-        config={config}
         nextDoc={nextDoc}
         previousDoc={previousDoc}
       />
@@ -55,15 +45,13 @@ export const getStaticProps = async ({ params }) => {
 
   const details = fetchDocBySlug(slug);
 
-  const mdxSource = await renderToString(details.content, { components, scope: details.data });
   return {
     props: {
       docs: details.docs,
-      title: details.data.title,
-      slug: details.data.slug,
-      source: mdxSource,
+      slug: details.slug,
       nextDoc: details.nextDoc,
       previousDoc: details.previousDoc,
+      content: details.content,
     },
   };
 };
