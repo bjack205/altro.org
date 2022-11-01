@@ -77,7 +77,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
                 rel="noreferrer"
                 className="h-[35px]"
               >
-                <Image src="/rex.svg" alt="robotic logo" width="30px" height="35px" />
+                <Image src="/REX.svg" alt="robotic logo" width="30px" height="35px" />
               </a>
             </Link>
           </div>
