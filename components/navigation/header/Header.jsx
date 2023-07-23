@@ -40,9 +40,7 @@ export const Header = ({ links, stickyHeader, docs }) => {
           <div className="flex space-x-0 items-center">
             <div className="lg:w-[163px] h-[55px] flex justify-start items-center hover:cursor-pointer">
               <Link href="/">
-                <a href="/" className="text-heading-sm text-red-300 font-logo">
-                  ALTRO
-                </a>
+                <span className="text-heading-sm text-red-300 font-logo">ALTRO</span>
               </Link>
             </div>
             <ul className="hidden lg:flex justify-around pt-1">
@@ -56,11 +54,9 @@ export const Header = ({ links, stickyHeader, docs }) => {
                     })}
                   >
                     {link.target ? (
-                      <Link href={link.url} passHref>
-                        <a href={link.url} target="_blank" rel="noreferrer">
-                          {link.label}
-                        </a>
-                      </Link>
+                      <a href={link.url} target="_blank" rel="noreferrer">
+                        {link.label}
+                      </a>
                     ) : (
                       <Link href={link.label == 'Docs' ? docsUrl : link.url}>{link.label}</Link>
                     )}
@@ -70,16 +66,14 @@ export const Header = ({ links, stickyHeader, docs }) => {
             </ul>
           </div>
           <div className="flex items-center justify-end h-[35px]">
-            <Link href="https://roboticexplorationlab.org/" passHref>
-              <a
-                href="https://roboticexplorationlab.org/"
-                target="_blank"
-                rel="noreferrer"
-                className="h-[35px]"
-              >
-                <Image src="/REX.svg" alt="robotic logo" width="30px" height="35px" />
-              </a>
-            </Link>
+            <a
+              href="https://roboticexplorationlab.org/"
+              target="_blank"
+              rel="noreferrer"
+              className="h-[35px]"
+            >
+              <Image src="/REX.svg" alt="robotic logo" width={30} height={35} />
+            </a>
           </div>
         </div>
       </header>
@@ -142,16 +136,14 @@ export const Header = ({ links, stickyHeader, docs }) => {
                               )}
                               onClick={() => setActive(false)}
                             >
-                              <Link href={'/docs/' + doc.slug}>
-                                <a
-                                  href={'/docs/' + doc.slug}
-                                  className={clsx(
-                                    'hover:bg-hover-effect text-grey-100 w-[95%] py-1 text-[14px] px-8 hover:cursor-pointer leading-6 flex items-center rounded-r-xl'
-                                  )}
-                                >
-                                  {doc.title}
-                                </a>
-                              </Link>
+                              <a
+                                href={'/docs/' + doc.slug}
+                                className={clsx(
+                                  'hover:bg-hover-effect text-grey-100 w-[95%] py-1 text-[14px] px-8 hover:cursor-pointer leading-6 flex items-center rounded-r-xl'
+                                )}
+                              >
+                                {doc.title}
+                              </a>
                             </li>
                           );
                         } else {
@@ -176,11 +168,9 @@ export const Header = ({ links, stickyHeader, docs }) => {
                   })}
                 >
                   {link.target ? (
-                    <Link href={link.url} passHref>
-                      <a href={link.url} target="_blank" rel="noreferrer">
-                        {link.label}
-                      </a>
-                    </Link>
+                    <a href={link.url} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
                   ) : (
                     <Link href={link.url}>{link.label}</Link>
                   )}

@@ -4,7 +4,8 @@ import { Header } from './navigation/header/Header';
 import { DocDropdown } from './navigation/doc-dropdown/DocDropdown';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useEffect, useRef, useState } from 'react';
-import { useSnackbar } from 'react-simple-snackbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import ReactMarkdown from 'react-markdown';
@@ -19,7 +20,6 @@ import xonokai from '../node_modules/react-syntax-highlighter/src/styles/prism/x
 import vs from '../node_modules/react-syntax-highlighter/src/styles/prism/vs';
 
 export default function Document({ docs, slug, content, previousDoc, nextDoc }) {
-  const [openSnackbar, closeSnackbar] = useSnackbar();
   const [query, setQuery] = useState('');
   // const [active, setActive] = useState(false);
   const [results, setResults] = useState([]);
@@ -36,10 +36,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
   const copyToClipboard = (id) => {
     const url = window.location.href.split('#')[0] + '#' + id;
     navigator.clipboard.writeText(url);
-    openSnackbar('Copied to clipboard');
-    setTimeout(() => {
-      closeSnackbar();
-    }, 3000);
+    toast('Copied to clipboard');
   };
 
   const searchEndpoint = (query) => `/api/search?q=${query}`;
@@ -125,18 +122,17 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                         }
                       )}
                     >
-                      <Link href={'/docs/' + doc.slug}>
-                        <a
-                          href={'/docs/' + doc.slug}
+                      <Link href={'/docs/' + doc.slug} className="w-[100%]">
+                        <span
                           className={clsx(
-                            'hover:bg-hover-effect text-doc-grey-100 w-[95%] py-1 text-[14px] px-8 hover:cursor-pointer leading-6 flex items-center rounded-r-xl',
+                            'hover:bg-hover-effect text-doc-grey-100 w-[95%] py-1 text-[14px] px-8 hover:cursor-pointer leading-6 flex items-center rounded-r-xl w-[100%]',
                             {
                               ['bg-active-effect text-doc-red-200']: doc.slug == slug,
                             }
                           )}
                         >
                           {doc.title}
-                        </a>
+                        </span>
                       </Link>
                     </li>
                   );
@@ -175,13 +171,10 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                             {result.children.map((child, j) => {
                               return (
                                 <li key={i + j}>
-                                  <Link href={'/docs/' + child.slug}>
-                                    <a
-                                      href={'/docs/' + child.slug}
-                                      className="text-doc-red-200 hover:underline"
-                                    >
+                                  <Link href={'/docs/' + child.slug} className="w-[100%]">
+                                    <span className="text-doc-red-200 hover:underline w-[100%]">
                                       {child.title}
-                                    </a>
+                                    </span>
                                   </Link>
                                 </li>
                               );
@@ -191,13 +184,10 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                       } else {
                         return (
                           <li key={i}>
-                            <Link href={'/docs/' + result.slug}>
-                              <a
-                                href={'/docs/' + result.slug}
-                                className="text-doc-red-200 hover:underline"
-                              >
+                            <Link href={'/docs/' + result.slug} className="w-[100%]">
+                              <span className="text-doc-red-200 hover:underline w-[100%]">
                                 {result.title}
-                              </a>
+                              </span>
                             </Link>
                           </li>
                         );
@@ -239,8 +229,8 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                 </div>
                 <div className="flex justify-between">
                   {previousDoc.slug !== slug ? (
-                    <Link href={'/docs/' + previousDoc.slug}>
-                      <a href={'/docs/' + previousDoc.slug} className="mt-8 flex items-center">
+                    <Link href={'/docs/' + previousDoc.slug} className="w-[100%]">
+                      <span className="mt-8 flex items-center w-[100%]">
                         <span className="text-body-lg">
                           <MdKeyboardArrowLeft />
                         </span>
@@ -248,14 +238,14 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                           <span className="text-doc-grey-200 text-body-sm">Previous</span>
                           {previousDoc.title}
                         </span>
-                      </a>
+                      </span>
                     </Link>
                   ) : (
                     <div></div>
                   )}
                   {nextDoc.slug !== slug && (
-                    <Link href={'/docs/' + nextDoc.slug}>
-                      <a href={'/docs/' + nextDoc.slug} className="mt-8 flex items-center">
+                    <Link href={'/docs/' + nextDoc.slug} className="w-[100%]">
+                      <span className="mt-8 flex items-center w-[100%]">
                         <span className="flex flex-col items-end text-body-[14px] text-doc-red-200 mr-2">
                           <span className="text-doc-grey-200 text-body-sm">Next</span>
                           {nextDoc.title}
@@ -263,7 +253,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
                         <span className="text-body-lg">
                           <MdKeyboardArrowRight />
                         </span>
-                      </a>
+                      </span>
                     </Link>
                   )}
                 </div>
@@ -275,6 +265,7 @@ export default function Document({ docs, slug, content, previousDoc, nextDoc }) 
           </article>
         </div>
       </div>
+      <ToastContainer theme="colored" enableMultiContainer={false} />
     </main>
   );
 }

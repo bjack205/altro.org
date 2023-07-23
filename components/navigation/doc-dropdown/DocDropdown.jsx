@@ -43,8 +43,7 @@ export const DocDropdown = ({ doc, index, length }) => {
             return (
               <li key={j} className="">
                 <Link href={'/docs/' + child.slug}>
-                  <a
-                    href={'/docs/' + child.slug}
+                  <span
                     className={clsx(
                       'hover:bg-hover-effect text-grey-100 lg:text-doc-grey-100 py-1 text-[14px] px-8 pl-16 hover:cursor-pointer leading-6 flex items-center rounded-r-xl',
                       {
@@ -54,7 +53,7 @@ export const DocDropdown = ({ doc, index, length }) => {
                     )}
                   >
                     {child.title}
-                  </a>
+                  </span>
                 </Link>
               </li>
             );

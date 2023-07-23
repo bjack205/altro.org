@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Footer } from '../components/navigation/footer/Footer';
 import { Header } from '../components/navigation/header/Header';
 import animationData from '../public/wave.json';
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import { BasicButton } from '../components/data-display/button/basic-button/BasicButton';
 import Image from 'next/image';
 import { fetchDocContent } from '../lib/docs';
@@ -14,14 +14,6 @@ import { useEffect, useState } from 'react';
 
 export default function Home({ docs, content }) {
   const [docsUrl, setDocsUrl] = useState('/docs/getting-started');
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
 
   useEffect(() => {
     if (docs[0].children) {
@@ -70,7 +62,7 @@ export default function Home({ docs, content }) {
             </div>
           </div>
           <div className="absolute opacity-50 w-[100%] h-[100%]">
-            <Lottie options={defaultOptions} height="100%" width="100%" />
+            <Lottie loop={true} animationData={animationData} height="100%" width="100%" />
           </div>
         </div>
         <div className="w-[100%] max-w-[1440px] flex flex-col items-center justify-center px-8 py-16">
@@ -116,27 +108,26 @@ export default function Home({ docs, content }) {
           <div className="flex flex-wrap w-[100%] justify-center py-2">
             {contributors.map((contributor, i) => {
               return (
-                <Link href={contributor.website} passHref key={i}>
-                  <a
-                    href={contributor.website}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-[100%] lg:w-[33%] flex flex-col items-center my-12"
-                  >
-                    <div className="rounded-full overflow-hidden w-[134px] h-[134px] relative">
-                      <Image src={contributor.profile} alt="profile headshot" layout="fill" />
-                    </div>
-                    <p className="text-body-lg font-bold text-grey-50 font-heading mt-4">
-                      {contributor.name}
-                    </p>
-                    <p className="text-center max-w-[300px] text-body-md text-grey-50 mt-2">
-                      {contributor.description}
-                    </p>
-                    <p className="text-center max-w-[300px] text-body-md text-grey-200 mt-2">
-                      {contributor.affiliation}
-                    </p>
-                  </a>
-                </Link>
+                <a
+                  href={contributor.website}
+                  target="_blank"
+                  key={i}
+                  rel="noreferrer"
+                  className="w-[100%] lg:w-[33%] flex flex-col items-center my-12"
+                >
+                  <div className="rounded-full overflow-hidden w-[134px] h-[134px] relative">
+                    <Image src={contributor.profile} alt="profile headshot" layout="fill" />
+                  </div>
+                  <p className="text-body-lg font-bold text-grey-50 font-heading mt-4">
+                    {contributor.name}
+                  </p>
+                  <p className="text-center max-w-[300px] text-body-md text-grey-50 mt-2">
+                    {contributor.description}
+                  </p>
+                  <p className="text-center max-w-[300px] text-body-md text-grey-200 mt-2">
+                    {contributor.affiliation}
+                  </p>
+                </a>
               );
             })}
           </div>
